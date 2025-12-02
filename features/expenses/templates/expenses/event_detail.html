@@ -1,0 +1,547 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block title %}Event Details{% endblock %}
+
+{% block extra_head %}
+<style>
+body { background:#fff; }
+
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 20px;
+  background: #111;  /* dark header */
+  color: white;
+  border-bottom: 2px solid #5c9f24;
+  margin: 0;          /* remove default margin */
+}
+
+.header a.back-btn,
+.header .event-actions a,
+.header .event-actions button {
+  color:white !important;   /* make buttons readable on dark bg */
+}
+.event-actions .btn,
+.event-actions button {
+  background: #80C532 !important;   /* green */
+  color: white !important;
+  border-radius: 10px;
+  padding: 8px 14px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+  text-decoration: none !important;
+}
+
+.event-actions .btn:hover,
+.event-actions button:hover {
+  background: #80C532 !important;  /* darker green on hover */
+  transform: scale(1.05);
+}
+
+/* Make sure buttons stay inline and wrap nicely on small screens */
+.event-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+
+.event-text h3 { margin:0; font-size:20px; }
+.event-meta { font-size:12px; color:#556b55; }
+
+.event-actions {
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+
+.btn, button {
+  background:#80C532 !important;
+  color:white !important;
+  border-radius:10px;
+  padding:8px 14px;
+  font-weight:600;
+  transition:0.2s;
+  text-decoration:none !important;
+  border:none;
+  cursor:pointer;
+}
+
+.btn:hover { background:#6aa628 !important; transform:scale(1.05); }
+.btn-delete-event { background:#ff3b3b !important; }
+.btn-edit-event { background:#3DAEFF !important; }
+.btn-invite { background:#FFB400 !important; }
+
+.content { padding:20px; max-width:850px; margin:auto; display:flex; flex-direction:column; gap:20px; }
+
+.section-box {
+  background:white;
+  padding:15px;
+  border-radius:14px;
+  border:1px solid #ffffffff;
+  box-shadow:0px 2px 8px rgba(0,0,0,0.05);
+}
+
+.expense-card {
+  background:white;
+  padding:12px;
+  margin-bottom:12px;
+  border-radius:12px;
+  border:1px solid #ffffffff;
+}
+
+.pie-charts {
+  display: flex;
+  justify-content: space-between; /* spread side by side */
+  gap: 20px;
+  flex-wrap: nowrap; /* do not wrap to next line */
+}
+
+.pie-card {
+  flex: 1;                /* take equal space */
+  max-width: 450px;       /* max width */
+  height: 450px;          /* square card */
+  background: white;
+  padding: 15px;
+  border-radius: 14px;
+  text-align: center;
+  border: 1px solid #dbdbdb;
+  box-shadow: 0px 3px 8px rgba(0,128,0,0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.pie-card canvas {
+  width: 60% !important;   /* fill card width */
+  height: 60% !important;  /* fill card height */
+  display: block;
+}
+
+
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin-top: 4px;
+  font-size: 12px;
+}
+
+
+.split-table {
+  width:100%;
+  border-collapse:collapse;
+}
+
+.split-table th, .split-table td {
+  padding:8px;
+  border:1px solid #ffffffff;
+  text-align:center;
+}
+
+.members {
+  padding:15px;
+  background:white;
+  border-radius:14px;
+  border:1px solid #ffffffff;
+}
+
+.member-item {
+  display:flex;
+  justify-content:space-between;
+  background:#fff;
+  padding:10px;
+  border-radius:10px;
+  margin-bottom:8px;
+}
+
+
+
+.pay-button-container {
+  margin-top: 20px;
+  display:flex;
+  justify-content:center;
+  padding-bottom: 20px;
+}
+
+
+.pay-button {
+  background:#80C532;
+  padding:14px 45px;
+  border-radius:40px;
+  color:white;
+  font-size:18px;
+  font-weight:600;
+  text-decoration:none;
+  box-shadow:0px 4px 10px rgba(0,128,0,0.2);
+}
+
+.legend-item {
+  display:flex;
+  align-items:center;
+  margin:2px 0;
+}
+.legend-color {
+  width:12px;
+  height:12px;
+  display:inline-block;
+  margin-right:6px;
+}
+.bill-link {
+  color: #4CAF50;       /* green to stand out */
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 12px;
+}
+
+.bill-link:hover {
+  text-decoration: underline;
+}
+
+/* Remove extra gap below header in page content */
+.content {
+  padding: 90px 30px 30px 30px; /* top padding = header height */
+  max-width: 900px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  /* Mobile responsiveness */
+  @media(max-width: 600px){
+    .header {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 12px 15px;
+    }
+    .event-actions {
+      width: 100%;
+      justify-content: flex-start;
+      gap: 8px;
+    }
+  }
+  .expense-card {
+    background:white;
+    padding:12px 16px;
+    margin-bottom:12px;
+    border-radius:12px;
+    border:1px solid #ffffffff;
+    box-shadow: 0 2px 6px rgba(0,128,0,0.05);
+  }
+
+  .expense-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom:6px;
+  }
+
+  .expense-desc {
+    font-weight:600;
+    font-size:14px;
+    color:#333;
+  }
+
+  .expense-amount {
+    font-weight:600;
+    font-size:14px;
+    color:#207A44; /* green */
+  }
+
+  .expense-details {
+    font-size:12px;
+    color:#556b55;
+  }
+  .btn-icon {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    width:36px;
+    height:36px;
+    font-size:18px;
+    background:#80C532;
+    color:white !important;
+    border-radius:10px;
+    cursor:pointer;
+    text-decoration:none;
+  }
+  .btn-icon:hover {
+    transform:scale(1.05);
+  }
+  
+  @media (max-width: 600px) {
+    .header, .card { flex-direction: column; align-items: flex-start; }
+    .buttons { flex-direction: column; width: 100%; }
+  }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div class="header">
+  <div class="left-section">
+    
+    <div class="event-text">
+      <h3>{{ event.name }}</h3>
+      <p class="event-meta">Created by {{ event.created_by.username }} on {{ event.created_at|date:"F j, Y" }}</p>
+      <a href="{% url 'dashboard' %}" class="back-btn">←</a>
+    </div>
+  </div>
+  <div class="event-actions">
+    <a href="{% url 'add_member' event.id %}" class="btn btn-green">➕ Member</a>
+    <form action="{% url 'add_expense' event.id %}" method="get" style="display:inline;">
+      <button type="submit" class="btn btn-green">➕ Expense</button>
+    </form>
+    <form action="{% url 'edit_event' event.id %}" method="get" style="display:inline;">
+      <button type="submit" class="btn btn-green">✏ Edit</button>
+    </form>
+    <a href="{% url 'delete_event' event.id %}" class="btn btn-green">🗑 Delete</a>
+    <a href="{% url 'invite_friend' event.id %}" class="btn btn-green">✉ Invite</a>
+  </div>
+</div>
+
+
+<div class="content" data-event-id="{{ event.id }}">
+  <div class="section-box total-pay-container">
+    <h2>Total: ₹{{ total_spent|floatformat:2 }}</h2>
+  </div>
+
+    <div class="section-box">
+      <h3>Expenses</h3>
+      {% for expense in expenses %}
+        <div class="expense-card">
+          <!-- Top row: Description left, Amount right -->
+          <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+            <span class="expense-desc" style="font-weight:600; font-size:14px;">{{ expense.description }}</span>
+            <span class="expense-amount" style="font-weight:700; font-size:14px;">₹{{ expense.amount|floatformat:2 }}</span>
+          </div>
+
+          <!-- Buttons row: Edit/Delete icons & Bill -->
+          <div style="display:flex; justify-content:flex-end; align-items:center; gap:10px; margin-top:8px;">
+
+            <a href="{% url 'edit_expense' expense.id %}" class="btn-icon" style="background:#80C532">✏</a>
+            <a href="{% url 'delete_expense' expense.id %}" class="btn-icon" style="background:#80C532">🗑</a>
+
+
+            
+          </div>
+
+          <!-- Paid by / Members -->
+          <div style="margin-top:6px; font-size:12px; color:#555;">
+            Paid by: <b>{{ expense.paid_by.username }}</b><br>
+            Members: {{ expense.members_involved.all|join:", " }}
+            {% if expense.bill_image %}
+            <a href="{{ expense.bill_image.url }}" target="_blank" class="bill-link">📄 View Bill</a>
+            {% else %}
+            <span class="bill-link">No Bill</span>
+            {% endif %}
+          </div>
+        </div>
+      {% empty %}
+        <p>No expenses yet.</p>
+      {% endfor %}
+    </div>
+
+
+  <div class="section-box">
+    <h4>Expense Overview</h4>
+    <div class="pie-charts">
+      <div class="pie-card">
+        <h5>Amount Paid</h5>
+        <canvas id="paidPieChart"></canvas>
+        <div id="paidLegend"></div>
+      </div>
+      <div class="pie-card">
+        <h5>Share Owed</h5>
+        <canvas id="sharePieChart"></canvas>
+        <div id="shareLegend"></div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="section-box">
+    <h4>Per User Split</h4>
+    <table class="split-table">
+      <thead>
+        <tr>
+          <th>Member</th>
+          <th>Paid (₹)</th>
+          <th>Share (₹)</th>
+          <th>Balance</th>
+        </tr>
+      </thead>
+      <tbody>
+    
+        {% for username, data in per_user.items %}
+          {% with bal=balances|dict_get:username %}
+          <tr>
+            <td>{{ username }}</td>
+            <td>{{ data.paid|floatformat:2 }}</td>
+            <td>{{ data.share|floatformat:2 }}</td>
+            <td>
+              {% if bal > 0 %}
+                <span class="gets">Gets ₹{{ bal|floatformat:2 }}</span>
+              {% elif bal < 0 %}
+                <span class="owes">Owes ₹{{ bal|floatformat:2|slice:"1:" }}</span>
+              {% else %}
+                <span class="settled">Settled</span>
+              {% endif %}
+            </td>
+          </tr>
+          {% endwith %}
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div id="event-container" data-event-id="{{ event.id }}">
+    <div class="section-box">
+      <h4>Settlement Summary</h4>
+      {% if settlements %}
+        {% for s in settlements %}
+          <p>
+            {{ s.from }} → {{ s.to }}: ₹{{ s.amount }}
+            <span class="reminder-bell"
+                  data-from="{{ s.from_user.username }}"
+                  data-to="{{ s.to_user.username }}"
+                  data-amount="{{ s.amount }}">
+              🔔
+            </span>
+          </p>
+        {% endfor %}
+      {% else %}
+        <p>🎉 All payments settled!</p>
+      {% endif %}
+    </div>
+  </div>
+
+
+  <div class="members section-box">
+    <h4>Event Members</h4>
+    <ul id="member-list">
+      {% for member in members %}
+        <li class="member-item">{{ member.username }} {% if member != request.user %}{% endif %}</li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+<div class="pay-button-container">
+  <a href="{% url 'pay_event' event.id %}" class="pay-button">Pay</a>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+<script>
+    const CSRF_TOKEN = "{{ csrf_token }}";
+</script>
+
+<script>
+Chart.register(ChartDataLabels);
+
+const perUser = {{ per_user|safe }};
+const labels = Object.keys(perUser);
+const paidData = Object.values(perUser).map(u => u.paid);
+const shareData = Object.values(perUser).map(u => u.share);
+const colors = ['#eddcd2','#a6808c','#fde2e4','#ffa6c1','#bcd4e6','#99c1de','#dfe7fd','#b8bedd'];
+
+function makeChart(canvasId, legendId, dataSet) {
+  const ctx = document.getElementById(canvasId);
+  new Chart(ctx, {
+    type: 'pie',
+    data: {
+      labels,
+      datasets: [{
+        data: dataSet,
+        backgroundColor: colors.slice(0, labels.length),
+        borderColor: '#fff',
+        borderWidth: 2
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,  // THIS makes the chart square
+      plugins: {
+        legend: { display: false },
+        datalabels: {
+          color: '#fff',
+          font: { weight: 'bold', size: 12 },
+          formatter: (value, ctx) => ctx.chart.data.labels[ctx.dataIndex]
+        }
+      }
+    }
+  });
+
+  const legendDiv = document.getElementById(legendId);
+  labels.forEach((name, i) => {
+    const item = document.createElement('div');
+    item.classList.add('legend-item');
+    item.innerHTML = `<span class="legend-color" style="background:${colors[i]}"></span><span>${name} — ₹${dataSet[i]}</span>`;
+    legendDiv.appendChild(item);
+  });
+}
+
+
+makeChart('paidPieChart', 'paidLegend', paidData);
+makeChart('sharePieChart', 'shareLegend', shareData);
+</script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const bells = document.querySelectorAll(".reminder-bell");
+
+    // ✔ GET EVENT ID FROM HTML (works in static JS)
+    const eventId = document.getElementById("reminder-section")?.dataset.eventId;
+
+    if (!eventId) {
+        console.error("Event ID missing");
+        return;
+    }
+
+    bells.forEach(bell => {
+        bell.addEventListener("click", () => {
+
+            const settlement = {
+                debtor: bell.dataset.from,
+                creditor: bell.dataset.to,
+                amount: bell.dataset.amount
+            };
+
+            fetch(`/event/${eventId}/send-reminder/`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": CSRF_TOKEN
+                },
+                body: JSON.stringify(settlement)
+            })
+            .then(res => res.json())
+            .then(data => {
+                showToast(data.message, data.success ? "success" : "error");
+            })
+            .catch(err => {
+                console.error(err);
+                showToast("⚠️ Something went wrong!", "error");
+            });
+        });
+    });
+});
+</script>
+
+
+<script src="{% static 'assets/js/main.js' %}"></script>
+
+{% endblock %}

@@ -1,0 +1,137 @@
+{% extends 'accounts/base.html' %}
+
+{% block title %}Invite Friend{% endblock %}
+
+{% block extra_head %}
+<style>
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: #f0faf2;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Centered card */
+  .invite-card {
+    max-width: 400px;
+    margin: 80px auto;
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 30px 25px;
+    box-shadow: 0 6px 18px rgba(0,128,0,0.15);
+    text-align: center;
+  }
+
+  .invite-card h2 {
+    margin-bottom: 25px;
+    color: #207A44;
+    font-size: 22px;
+    font-weight: 600;
+  }
+
+  .back-btn {
+    display: inline-block;
+    margin-bottom: 20px;
+    text-decoration: none;
+    color: #207A44;
+    font-weight: 600;
+    font-size: 16px;
+  }
+
+  form label {
+    display: block;
+    text-align: left;
+    font-size: 14px;
+    margin-bottom: 6px;
+    color: #333;
+  }
+
+  input[type="email"] {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 18px;
+    border: 1px solid #c8e6c9;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+  }
+
+  input[type="email"]:focus {
+    border-color: #80c532;
+    box-shadow: 0 0 4px rgba(128,197,50,0.4);
+  }
+
+  button {
+    background: #80C532;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 40px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  button:hover {
+    background: #6aa628;
+    transform: scale(1.03);
+  }
+
+  /* Messages */
+  .msg-container {
+    position: fixed;
+    top: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 450px;
+    z-index: 2000;
+  }
+
+  .alert {
+    padding: 12px 15px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    font-weight: 500;
+    text-align: center;
+    color: white;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+    animation: fadeInOut 3.5s ease-in-out;
+  }
+
+  .alert.success { background: #4CAF50; }
+  .alert.error, .alert.danger { background: #f44336; }
+
+  @keyframes fadeInOut {
+    0% { opacity: 0; transform: translateY(-10px); }
+    10%, 90% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-10px); }
+  }
+
+  @media(max-width:480px){
+    .invite-card { margin: 40px 15px; padding: 25px 20px; }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="invite-card">
+  <a href="{% url 'event_detail' event.id %}" class="back-btn">← Back</a>
+  <h2>Invite Friend to "{{ event.name }}"</h2>
+
+  <form method="POST">
+    {% csrf_token %}
+    <label for="email">Friend's Email</label>
+    <input type="email" id="email" name="email" placeholder="Enter email address" required>
+    <button type="submit">✉ Send Invite</button>
+  </form>
+</div>
+
+<div class="msg-container">
+  {% for message in messages %}
+    <div class="alert {{ message.tags }}">{{ message }}</div>
+  {% endfor %}
+</div>
+{% endblock %}

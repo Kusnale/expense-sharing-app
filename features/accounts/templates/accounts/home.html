@@ -1,0 +1,237 @@
+{% extends "accounts/base.html" %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+ 
+
+<!-- HERO START -->
+<section id="hero">
+
+  <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+
+    <div class="carousel-inner">
+
+      <!-- Slide 1 -->
+      <div class="carousel-item active"
+        style="background-image: url('{% static "accounts/assets/img/slide/slide-1.jpg" %}');">
+        <div class="carousel-container">
+          <h2>Track and Share Expenses Easily</h2>
+          <p>Simplify your group events with automated tracking.</p>
+          <a href="{% url 'login' %}" class="btn-get-started">Get Started</a>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="carousel-item"
+        style="background-image: url('{% static "accounts/assets/img/slide/slide-2.jpg" %}');">
+        <div class="carousel-container">
+          <h2>Organize Your Events</h2>
+          <p>Create events, add members, and split expenses instantly.</p>
+          <a href="{% url 'login' %}" class="btn-get-started">Get Started</a>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="carousel-item"
+        style="background-image: url('{% static "accounts/assets/img/slide/slide-3.jpg" %}');">
+        <div class="carousel-container">
+          <h2>Everything Managed Smoothly</h2>
+          <p>Designed to keep your expense records clear and transparent.</p>
+          <a href="{% url 'login' %}" class="btn-get-started">Get Started</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- SLIDER CONTROLS (Only one set) -->
+    <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon bi bi-chevron-left"></span>
+    </a>
+
+    <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+      <span class="carousel-control-next-icon bi bi-chevron-right"></span>
+    </a>
+
+  </div>
+
+</section>
+<!-- HERO END -->
+
+
+
+<!-- ABOUT SECTION (Groovin Style) -->
+<h2 class="section-title text-center mt-5">About Expense Share</h2>
+<section id="about" class="about section">
+
+
+  <div class="container">
+
+    <div class="row gy-4">
+
+      <div class="col-lg-5" data-aos="fade-right">
+            <div id="aboutCarousel" class="carousel slide about-img-slider" data-bs-ride="carousel">
+
+                <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="{% static 'accounts/assets/img/about/about-1.jpg' %}" class="d-block w-100">
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'accounts/assets/img/about/about-2.jpg' %}" class="d-block w-100">
+                </div>
+                </div>
+
+                <button class="carousel-control-prev" type="button" data-bs-target="#aboutCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+                </button>
+
+                <button class="carousel-control-next" type="button" data-bs-target="#aboutCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+                </button>
+
+            </div>
+        </div>
+
+      <!-- Right Tabs -->
+      <div class="col-lg-7 d-flex flex-column justify-content-center" data-aos="fade-left">
+
+        <h3>Why Use ExpenseShare?</h3>
+
+        <ul class="nav nav-pills mb-3">
+          <li class="nav-item">
+            <a class="nav-link active" data-bs-toggle="pill" href="#tab1">Easy Tracking</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="pill" href="#tab2">Event Management</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="pill" href="#tab3">Transparent Splitting</a>
+          </li>
+        </ul>
+
+        <!-- Tab Content -->
+        <div class="tab-content">
+
+          <div class="tab-pane fade show active" id="tab1">
+            <p>
+                Keep track of all your event expenses in one clean and organized dashboard.  
+                ExpenseShare automatically calculates:
+            </p>
+            <ul>
+                <li>Amount spent</li>
+                <li>Each member’s contribution</li>
+                
+                <li>Exact amount per person when splitting equally</li>
+            </ul>
+            <p>
+                Add expenses anytime, attach bills or screenshots, and stay fully transparent.
+            </p>
+            </div>
+
+
+          <div class="tab-pane fade" id="tab2">
+            <p>
+                Manage any event effortlessly — from trips and parties to daily shared spending.  
+                Powerful features include:
+            </p>
+            <ul>
+                <li>Create events and add unlimited friends</li>
+                <li>Invite members via email</li>
+                <li>Track who paid, how much, and for what</li>
+                <li>Customize split — equally or based on shares</li>
+                <li>Upload bills and maintain a full expense history</li>
+            </ul>
+            <p>
+                Everything stays synced so your group always sees the latest updates.
+            </p>
+            </div>
+
+
+          <div class="tab-pane fade" id="tab3">
+            <p>
+                No confusion — everyone gets a clear breakdown of all payments and balances:
+            </p>
+            <ul>
+                <li>Record partial or full payments</li>
+                <li>View exact amounts per person</li>
+                <li>See who owes money and who is owed</li>
+                <li>Settle balances instantly with online payment links</li>
+                <li>Keep all past event records for future reference</li>
+            </ul>
+            <p>
+                ExpenseShare ensures complete transparency so your group would never have confusion about “who paid what”.
+            </p>
+            </div>
+
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+<!-- ======= 3-COLUMN PORTFOLIO SLIDER ======= -->
+<section id="feature-slider" class="section">
+  <div class="container">
+
+    <div class="section-title" data-aos="fade-up">
+      <h2Manage> Manage expenses with Anyone and Anywhere at Anytime</h2>
+      <p></p>
+    </div>
+
+
+    <div id="portfolioCarousel" class="carousel slide" data-bs-ride="carousel">
+
+      <div class="carousel-inner">
+
+        <!-- SLIDE 1 -->
+        <div class="carousel-item active">
+          <div class="row">
+            <div class="col-md-4"><img src="{% static 'accounts/assets/img/portfolio/app-1.jpg' %}" class="feature-img"></div>
+            <div class="col-md-4"><img src="{% static 'accounts/assets/img/portfolio/app-2.jpg' %}" class="feature-img"></div>
+            <div class="col-md-4"><img src="{% static 'accounts/assets/img/portfolio/app-3.jpg' %}" class="feature-img"></div>
+            
+          </div>
+        </div>
+
+        <!-- SLIDE 2 -->
+        <div class="carousel-item">
+          <div class="row">
+            <div class="col-md-4"><img src="{% static 'accounts/assets/img/portfolio/app-4.jpg' %}" class="feature-img"></div>
+            <div class="col-md-4"><img src="{% static 'accounts/assets/img/portfolio/app-5.jpg' %}" class="feature-img"></div>
+            <div class="col-md-4"><img src="{% static 'accounts/assets/img/portfolio/app-6.jpg' %}" class="feature-img"></div>
+            
+          </div>
+        </div>
+
+        <!-- SLIDE 3 -->
+        <div class="carousel-item">
+          <div class="row">
+            <div class="col-md-4"><img src="{% static 'accounts/assets/img/portfolio/app-7.jpg' %}" class="feature-img"></div>
+            <div class="col-md-4"><img src="{% static 'accounts/assets/img/portfolio/app-8.jpg' %}" class="feature-img"></div>
+            <div class="col-md-4"><img src="{% static 'accounts/assets/img/portfolio/app-9.jpg' %}" class="feature-img"></div>
+            
+          </div>
+        </div>
+
+      </div>
+
+      <!-- NEXT / PREV -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#portfolioCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+
+      <button class="carousel-control-next" type="button" data-bs-target="#portfolioCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
+
+    </div>
+
+  </div>
+</section>
+<!-- ===== END 3-COLUMN SLIDER ===== -->
+
+{% endblock %}

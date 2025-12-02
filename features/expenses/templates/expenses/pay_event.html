@@ -1,0 +1,129 @@
+{% extends 'accounts/base.html' %}
+{% block title %}Pay for {{ event.name }}{% endblock %}
+{% load static %}
+
+{% block content %}
+<div class="container" data-event-id="{{ event.id }}"
+     style="max-width:700px;margin:20px auto;background:#fff;border-radius:12px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+
+    <h2 style="text-align:center;">💸 Settle Payment — {{ event.name }}</h2>
+    <hr>
+    <p><strong>You are:</strong> {{ request.user.username }}</p>
+
+    {% if all_settled %}
+        <p style="text-align:center; font-weight:600; margin:20px 0;">🎉 All payments settled!</p>
+        <a href="{% url 'event_detail' event.id %}" style="display:block;text-align:center;margin-top:10px;">← Back to Event</a>
+    {% else %}
+        <p style="font-weight:600;">Total to pay: ₹{{ total_user_owes|floatformat:2 }}</p>
+
+        <div style="display:flex;flex-direction:column;gap:12px;margin-top:12px;">
+            {% for frm, to, amt in user_settlements %}
+            <div style="border:1px solid #eee;padding:12px;border-radius:8px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;">
+                <div>
+                    <div><strong>{{ frm }}</strong> → <strong>{{ to }}</strong></div>
+                    <div style="color:#666;font-size:14px;">Amount: ₹{{ amt|floatformat:2 }}</div>
+                    {% if to.profile.upi %}
+                        <div style="color:#888;font-size:13px;">💳 {{ to.profile.upi }}</div>
+                    {% endif %}
+                </div>
+
+                <div style="display:flex;gap:8px;align-items:center;margin-top:8px;">
+                    <!-- UPI Button -->
+                    <button type="button"
+                            class="upi-btn"
+                            data-amount="{{ amt|floatformat:2 }}"
+                            data-receiver="{{ to.username }}"
+                            data-upi="{{ to.profile.upi|default:'' }}"
+                            style="background:#80C532;color:white;padding:8px 18px;border:none;border-radius:8px;font-weight:600;cursor:pointer;">
+                        UPI
+                    </button>
+
+                    <!-- Cash Button -->
+                    <button type="button"
+                            class="cash-btn"
+                            data-amount="{{ amt|floatformat:2 }}"
+                            data-receiver="{{ to.username }}"
+                            style="background:#80C532;color:white;padding:8px 12px;border:none;border-radius:8px;font-weight:600;cursor:pointer;">
+                        Cash
+                    </button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <a href="{% url 'event_detail' event.id %}" style="display:block;text-align:center;margin-top:16px;">← Back to Event</a>
+    {% endif %}
+</div>
+
+<!-- Cash Popup -->
+<div id="cash-popup" style="
+    display:none;
+    position:fixed; inset:0;
+    background:rgba(0,0,0,0.45);
+    align-items:center; justify-content:center;
+    z-index:9999;
+    pointer-events:auto;">
+
+
+    <div style="background:#fff;padding:20px;border-radius:10px;max-width:400px;width:90%;text-align:center;">
+        <p id="cash-text" style="font-size:16px;font-weight:600;"></p>
+
+        <div style="margin-top:14px;">
+            <button id="cash-confirm" 
+                style="background:#4CAF50;color:white;padding:8px 14px;border:none;border-radius:8px;margin-right:8px;">
+                Confirm
+            </button>
+
+            <button id="cash-cancel" 
+                style="background:#f44336;color:white;padding:8px 14px;border:none;border-radius:8px;">
+                Cancel
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<!-- UPI Popup -->
+<div id="upi-popup" style="
+    display:none;
+    position:fixed; inset:0;
+    background:rgba(0,0,0,0.45);
+    align-items:center; justify-content:center;
+    z-index:99999;
+    pointer-events:auto;  ">
+
+
+    <div style="background:#fff;padding:20px;border-radius:10px;max-width:400px;width:90%;text-align:center;
+        pointer-events:auto;">   
+        <h3>💳 UPI Payment</h3>
+        <p>Pay <span id="upi-amount"></span> to <strong id="upi-receiver"></strong></p>
+        <p>Receiver UPI: <span id="upi-id"></span></p>
+        
+
+        <input id="upi-input" type="text"
+            placeholder="Enter your UPI ID (e.g. shruti@ibl)"
+            style="width:90%;padding:8px;margin:10px 0;border:1px solid #ccc;border-radius:6px;">
+
+        <div style="margin-top:10px;">
+            <button id="upi-confirm"
+                style="background:#4CAF50;color:white;padding:8px 14px;border:none;border-radius:8px;margin-right:8px;">
+                Confirm
+            </button>
+
+            <button id="upi-cancel"
+                style="background:#f44336;color:white;padding:8px 14px;border:none;border-radius:8px;">
+                Cancel
+            </button>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+{% block scripts %}
+<script src="{% static 'accounts/assets/js/pay_event.js' %}?v=23"></script>
+
+{% endblock %}
+

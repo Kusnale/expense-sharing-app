@@ -1,0 +1,215 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+
+  <meta charset="utf-8">
+  <title>{% block title %}Expense Sharing{% endblock %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- ======= Groovin CSS ======= -->
+  <link href="{% static 'accounts/assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'accounts/assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'accounts/assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'accounts/assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'accounts/assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+  <link href="{% static 'accounts/assets/vendor/fontawesome/css/all.min.css' %}" rel="stylesheet">
+   
+  <link href="{% static 'accounts/assets/css/main.css' %}" rel="stylesheet">
+
+
+
+
+  {% block extra_head %}{% endblock %}
+</head>
+
+<body>
+
+  <!-- ======= HEADER ======= -->
+  <header id="header" class="header fixed-top">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+      <a href="{% url 'home' %}" class="logo d-flex align-items-center">
+
+        <h1>Expense Share</h1>
+      </a>
+
+      
+        <nav id="navmenu" class="navmenu">
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                <li><a href="{% url 'add_event' %}">+ Add Event</a></li>
+                <li><a href="#footer">Contact Us</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="#" onclick="openProfile()">Profile</a></li>
+                {% endif %}
+            </ul>
+            <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+        </nav>
+
+      
+
+    
+    </div>
+  </header>
+  <!-- End Header -->
+
+
+  <!-- ======= PROFILE SIDEBAR ======= -->
+  
+  {% include "expenses/sidebar_profile.html" %}
+
+
+
+  <!-- ======= MAIN CONTENT ======= -->
+  <main id="main" style="margin-top: 90px;">
+      {% block content %}
+      {% endblock %}
+  </main>
+
+
+
+  <!-- ======= FOOTER ======= -->
+  <footer id="footer" class="footer">
+
+    <div class="footer-top">
+      <div class="container">
+        <div class="row gy-4">
+
+          <!-- Address -->
+          <div class="col-lg-6 col-md-6 footer-info">
+            <h4>Address</h4>
+            <p>
+              123 Your Street,<br>
+
+              Mumbai, India 400001<br><br>
+
+            </p>
+            <div class="container mt-4">
+              <div class="copyright">
+                &copy; 2024 <strong><span>Expense Share</span></strong>. All Rights Reserved
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact -->
+          <div class="col-lg-6 col-md-6 footer-contact text-md-start">
+            <h4>Contact Us</h4>
+            <p>
+              <strong>Email:</strong> yourmail@gmail.com<br>
+              <strong>Phone:</strong> +91 9876543210<br>
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+
+  </footer>
+  <!-- End Footer -->
+
+
+
+  <!-- ======= JS FILES ======= -->
+  <script src="{% static 'accounts/assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'accounts/assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'accounts/assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'accounts/assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+  <script src="{% static 'accounts/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+  <script src="{% static 'accounts/assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'accounts/assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+
+  <script src="{% static 'accounts/assets/js/main.js' %}"></script>
+
+  <script>
+    function openProfile() {
+      document.getElementById("profileSidebar").classList.add("active");
+      document.getElementById("overlay").classList.add("active");
+    }
+    function closeProfile() {
+      document.getElementById("profileSidebar").classList.remove("active");
+      document.getElementById("overlay").classList.remove("active");
+    }
+  </script>
+  
+
+
+  {% block scripts %}{% endblock %}
+  
+ 
+  <script src="{% static 'accounts/assets/js/global-toast.js' %}"></script>
+
+
+
+  <script src="{% static 'accounts/assets/js/profile.js' %}"></script>
+
+  {% if messages %}
+  <div aria-live="polite" aria-atomic="true" class="position-fixed bottom-0 end-0 p-3" style="z-index: 9999;">
+    {% for message in messages %}
+    <div class="toast text-white bg-success border-0" role="alert">
+      <div class="d-flex">
+        <div class="toast-body">{{ message }}</div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto"
+          data-bs-dismiss="toast"></button>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+      var toastElList = [].slice.call(document.querySelectorAll('.toast'))
+      toastElList.forEach(function (toastEl) {
+          new bootstrap.Toast(toastEl, {autohide: true, delay: 2000}).show()
+      });
+  });
+  </script>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", function() {
+      const input = document.getElementById("upiInput");
+      const editBtn = document.getElementById("upiEditBtn");
+      const saveBtn = document.getElementById("upiSaveBtn");
+
+      editBtn.addEventListener("click", () => {
+          input.disabled = false;
+          input.focus();
+          editBtn.style.display = "none";
+          saveBtn.style.display = "inline";
+      });
+
+      saveBtn.addEventListener("click", async () => {
+          const newUpi = input.value.trim();
+
+          if (!newUpi) {
+              alert("UPI can't be empty.");
+              return;
+          }
+
+          // Send update request
+          const response = await fetch("{% url 'update_upi' %}", {
+              method: "POST",
+              headers: {
+                  "Content-Type": "application/json",
+                  "X-CSRFToken": "{{ csrf_token }}",
+              },
+              body: JSON.stringify({ upi_id: newUpi })
+          });
+
+          if (response.ok) {
+              input.disabled = true;
+              saveBtn.style.display = "none";
+              editBtn.style.display = "inline";
+          } else {
+              alert("Failed to update. Try again.");
+          }
+      });
+  });
+  </script>
+</body>
+</html>

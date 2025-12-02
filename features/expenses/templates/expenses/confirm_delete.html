@@ -1,0 +1,58 @@
+{% extends "accounts/base.html" %}
+{% load static %}
+{% block title %}Confirm Delete{% endblock %}
+
+{% block content %}
+
+<section class="section" style="display:flex;justify-content:center;align-items:center;min-height:60vh;">
+  <div class="container" style="max-width:450px;">
+    
+    <div style="
+      background: var(--surface-color);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      text-align:center;
+    ">
+      <h2 style="font-family: var(--heading-font); font-weight:600; color:var(--heading-color); font-size:28px;">
+        ⚠️ Confirm Delete
+      </h2>
+
+      <p style="font-size:16px; margin:15px 0; color:var(--default-color);">
+        Are you sure you want to delete <strong>{{ event.name }}</strong>?
+      </p>
+
+      <form method="POST" style="margin-top:25px;">
+        {% csrf_token %}
+
+        <!-- Delete Button -->
+        <button type="submit" style="
+          background: var(--accent-color);
+          color: var(--contrast-color);
+          border: none;
+          padding: 12px 35px;
+          border-radius: 6px;
+          cursor: pointer;
+          font-size: 15px;
+          transition: .3s;
+        ">
+          Yes, Delete
+        </button>
+
+        <!-- Cancel -->
+        <a href="{% url 'event_detail' event.id %}" style="
+          margin-left: 15px;
+          color: var(--default-color);
+          font-size: 15px;
+          text-decoration:none;
+        ">
+          Cancel
+        </a>
+
+      </form>
+    </div>
+
+  </div>
+</section>
+
+{% endblock %}

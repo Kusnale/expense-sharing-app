@@ -1,0 +1,83 @@
+{% extends "accounts/base.html" %}
+{% load static %}
+
+{% block title %}Signup{% endblock %}
+{% block extra_head %}
+<style>
+.auth-container {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:40px 10px;
+}
+.auth-card {
+    width:100%;
+    max-width:420px;
+    background:white;
+    padding:30px;
+    border-radius:18px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.08);
+}
+.auth-title {
+    text-align:center;
+    margin-bottom:25px;
+    font-size:26px;
+    font-weight:600;
+}
+.auth-input {
+    width:100%;
+    padding:12px 15px;
+    margin-bottom:15px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    font-size:16px;
+}
+.auth-btn {
+    width:100%;
+    padding:12px;
+    background:#1e8f4f;
+    border:none;
+    color:white;
+    border-radius:10px;
+    font-size:17px;
+    cursor:pointer;
+}
+.auth-btn:hover {
+    background:#187a42;
+}
+.auth-link {
+    text-align:center;
+    margin-top:15px;
+}
+.alert {
+    background:#e8f5e9;
+    padding:10px;
+    border-radius:8px;
+    text-align:center;
+    margin-bottom:15px;
+}
+</style>
+{% endblock %}
+{% block content %}
+<div class="auth-container">
+    <div class="auth-card">
+        <h2 class="auth-title">Create Account</h2>
+
+        <form method="POST">
+            {% csrf_token %}
+            <input type="text" name="username" class="auth-input" placeholder="Username" required>
+            <input type="email" name="email" class="auth-input" placeholder="Email" required>
+            <input type="password" name="password1" class="auth-input" placeholder="Password" required>
+            <input type="password" name="password2" class="auth-input" placeholder="Confirm Password" required>
+
+            <button type="submit" class="auth-btn">Sign Up</button>
+        </form>
+
+        <p class="auth-link">
+            Already have an account? <a href="{% url 'login' %}">Login</a>
+        </p>
+    </div>
+</div>
+
+
+{% endblock %}

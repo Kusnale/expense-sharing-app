@@ -1,0 +1,262 @@
+{% extends 'accounts/base.html' %}
+{% load custom_filters %}
+
+
+{% block title %}Edit Expense{% endblock %}
+
+{% block extra_head %}
+<style>
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: #f4f7f9;
+    margin: 0;
+    padding: 20px;
+  }
+
+  .container {
+    background: #fff;
+    border-radius: 12px;
+    max-width: 650px;
+    margin: auto;
+    padding: 25px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  }
+
+  h2 {
+    text-align: center;
+    color: #333;
+  }
+
+  label {
+    display: block;
+    margin-top: 15px;
+    font-weight: 600;
+    color: #333;
+  }
+
+  input, select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-top: 5px;
+    font-size: 14px;
+  }
+
+  button[type="submit"] {
+    margin-top: 20px;
+    width: 100%;
+    background: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+  }
+
+  button[type="submit"]:hover {
+    background: #3e8e41;
+  }
+
+  .split-type {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .split-btn {
+    background: #eee;
+    border: none;
+    color: #333;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.3s, transform 0.2s;
+  }
+
+  .split-btn:hover { background: #ddd; }
+
+  .split-btn.active {
+    background: #4CAF50;
+    color: white;
+    transform: scale(1.05);
+  }
+
+  .split-section {
+    display: none;
+    margin-top: 15px;
+  }
+
+  .split-section.active {
+    display: block;
+  }
+
+  .member-input {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+
+  .member-input input {
+    width: 60%;
+  }
+
+  .bill-preview {
+    margin-top: 15px;
+    text-align: center;
+  }
+
+  .bill-preview img {
+    max-width: 100%;
+    max-height: 250px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+  }
+
+  a.back-link {
+    display: inline-block;
+    margin-top: 15px;
+    text-decoration: none;
+    color: #007bff;
+    font-size: 14px;
+  }
+  body {
+    font-family: "Poppins", sans-serif;
+    background: #f4f6f9;
+    margin: 0;
+    padding: 0;
+  }
+
+  .edit-card {
+    background: #ffffff;
+    padding: 30px 25px;
+    border-radius: 14px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    width: 400px;
+    margin: 100px auto 80px; /* margin-bottom = footer height space */
+    text-align: center;
+  }
+
+  @media(max-width:450px){
+    .edit-card { width: 90%; padding: 20px; margin-bottom: 100px; }
+  }
+
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h2>Edit Expense in "{{ event.name }}"</h2>
+
+  <!-- ✅ Add enctype for image upload -->
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <label>Description:</label>
+    <input type="text" name="description" value="{{ expense.description }}" required>
+
+    <label>Amount (₹):</label>
+    <input type="number" step="0.01" name="amount" value="{{ expense.amount }}" required>
+
+    <label>Paid by:</label>
+    <select name="paid_by">
+      {% for member in members %}
+        <option value="{{ member.id }}" {% if expense.paid_by.id == member.id %}selected{% endif %}>
+          {{ member.username }}
+        </option>
+      {% endfor %}
+    </select>
+
+    <label>Members involved:</label>
+    {% for member in members %}
+      <div>
+        <input type="checkbox" name="members" value="{{ member.id }}"
+               {% if member in expense.members_involved.all %}checked{% endif %}>
+        {{ member.username }}
+      </div>
+    {% endfor %}
+
+    <label>Split Type</label>
+    <div class="split-type">
+      <button type="button" class="split-btn {% if expense.split_type == 'equal' %}active{% endif %}" data-type="equal">Equally</button>
+      <button type="button" class="split-btn {% if expense.split_type == 'exact' %}active{% endif %}" data-type="exact">Exact Amounts</button>
+      <button type="button" class="split-btn {% if expense.split_type == 'shares' %}active{% endif %}" data-type="shares">Shares</button>
+      <button type="button" class="split-btn {% if expense.split_type == 'reimburse' %}active{% endif %}" data-type="reimburse">Reimbursement</button>
+    </div>
+
+    <input type="hidden" name="split_type" id="split_type" value="{{ expense.split_type|default:'equal' }}">
+
+    <!-- SPLIT SECTIONS -->
+    <div id="split_equal" class="split-section {% if expense.split_type == 'equal' %}active{% endif %}">
+      <p>Split equally among all selected members.</p>
+    </div>
+
+    <div id="split_exact" class="split-section {% if expense.split_type == 'exact' %}active{% endif %}">
+      <h4>Enter Exact Amounts (₹)</h4>
+      {% for member in members %}
+        <div class="member-input">
+          <span>{{ member.username }}</span>
+          <input type="number" step="0.01" name="exact_amount_{{ member.id }}" placeholder="0.00"
+                 value="{{ expense.extra_data|dict_get:member.id }}">
+        </div>
+      {% endfor %}
+    </div>
+
+    <div id="split_shares" class="split-section {% if expense.split_type == 'shares' %}active{% endif %}">
+      <h4>Enter Share Ratio</h4>
+      {% for member in members %}
+        <div class="member-input">
+          <span>{{ member.username }}</span>
+          <input type="number" step="1" name="share_{{ member.id }}" placeholder="1"
+                 value="{{ expense.extra_data|dict_get:member.id }}">
+        </div>
+      {% endfor %}
+    </div>
+
+    <div id="split_reimburse" class="split-section {% if expense.split_type == 'reimburse' %}active{% endif %}">
+      <h4>Reimbursement</h4>
+      <p>Use this if one member reimburses another manually.</p>
+    </div>
+
+    <!-- ✅ Bill image (preview + edit) -->
+    {% if expense.bill_image %}
+      <div class="bill-preview">
+        <p><strong>Current Bill Image:</strong></p>
+        <img src="{{ expense.bill_image.url }}" alt="Bill Image">
+      </div>
+    {% endif %}
+
+    <label>Add / Replace Bill Image</label>
+    <input type="file" name="bill_image" accept="image/*">
+
+    <button type="submit">Save Changes</button>
+  </form>
+
+  <a href="{% url 'event_detail' event.id %}" class="back-link">← Back to Event</a>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  const splitButtons = document.querySelectorAll('.split-btn');
+  const splitTypeInput = document.getElementById('split_type');
+  const sections = document.querySelectorAll('.split-section');
+
+  splitButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      splitButtons.forEach(b => b.classList.remove('active'));
+      button.classList.add('active');
+
+      const type = button.dataset.type;
+      splitTypeInput.value = type;
+
+      sections.forEach(sec => sec.classList.remove('active'));
+      document.getElementById('split_' + type).classList.add('active');
+    });
+  });
+</script>
+{% endblock %}

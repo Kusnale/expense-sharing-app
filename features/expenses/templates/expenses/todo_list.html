@@ -1,0 +1,31 @@
+{% extends 'accounts/base.html' %}
+{% block title %}To-Do List{% endblock %}
+{% block content %}
+<div style="max-width: 500px; margin: auto; padding: 20px; text-align:center;">
+  <h2>📝 To-Do List</h2>
+
+  <form method="POST" style="margin-bottom:20px;">
+    {% csrf_token %}
+    <input type="text" name="title" placeholder="Add new task..." required
+           style="padding:8px; width:70%; border:none; border-bottom:2px solid #444; outline:none;">
+    <button type="submit" style="padding:8px 12px; background:#007bff; color:white; border:none; border-radius:5px;">Add</button>
+  </form>
+
+  <ul style="list-style:none; padding:0;">
+    {% for todo in todos %}
+      <li style="display:flex; justify-content:space-between; align-items:center; 
+                 background:#f8f8f8; padding:10px; margin-bottom:8px; border-radius:8px;">
+        <span>{{ todo.title }}</span>
+        <form method="POST" action="{% url 'todo_delete' todo.id %}" style="margin:0;">
+          {% csrf_token %}
+          <button type="submit" style="background:none; border:none; cursor:pointer; font-size:18px;">🗑</button>
+        </form>
+      </li>
+    {% empty %}
+      <li>No tasks yet.</li>
+    {% endfor %}
+  </ul>
+
+  <a href="{% url 'dashboard' %}" style="display:block; margin-top:15px; text-decoration:none;">⬅ Back</a>
+</div>
+{% endblock %}

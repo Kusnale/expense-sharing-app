@@ -1,0 +1,36 @@
+{% extends 'accounts/base.html' %}
+
+{% block title %}Invite Friend{% endblock %}
+{% block content %}
+<h4>Per User Split</h4>
+<div class="table-container">
+  <table class="split-table">
+    <thead>
+      <tr>
+        <th>Member</th>
+        <th>Paid (₹)</th>
+        <th>Share (₹)</th>
+        <th>Balance</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for username, data in per_user.items %}
+      <tr>
+        <td>{{ username }}</td>
+        <td>{{ data.paid }}</td>
+        <td>{{ data.share }}</td>
+        <td>
+          {% if data.balance > 0 %}
+            Gets ₹{{ data.balance }}
+          {% elif data.balance < 0 %}
+            Owes ₹{{ data.balance|floatformat:2|slice:"1:" }}
+          {% else %}
+            Settled
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'accounts/base.html' %}
+{% block title %}💳 UPI Payment{% endblock %}
+{% block content %}
+<div class="card mx-auto mt-4 p-4 max-w-lg">
+  <h2 class="text-xl font-semibold mb-2">💳 UPI Payment</h2>
+  <p>Pay ₹{{ amount }} to</p>
+
+  {% if receiver_upi %}
+    <p><strong>Receiver:</strong> {{ receiver.username }}</p>
+    <p><strong>Receiver UPI:</strong> {{ receiver_upi }}</p>
+
+    <div class="mt-4">
+      <form method="post" action="{% url 'event_detail' event.id %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-success">✅ Confirm Payment</button>
+        <a href="{% url 'event_detail' event.id %}" class="btn btn-secondary">Cancel</a>
+      </form>
+    </div>
+  {% else %}
+    <p class="text-red-500">⚠️ Receiver has not set a UPI ID yet.</p>
+  {% endif %}
+</div>
+{% endblock %}

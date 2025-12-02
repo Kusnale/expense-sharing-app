@@ -1,0 +1,22 @@
+{% extends 'accounts/base.html' %}
+{% block title %}💸 Settle Payment — {{ event.name }}{% endblock %}
+{% block content %}
+<div class="card mx-auto mt-4 p-4 max-w-lg">
+  <h2 class="text-xl font-semibold mb-2">💸 Settle Payment — {{ event.name }}</h2>
+  <p><strong>You are:</strong> {{ user.username }}</p>
+  {% if owes_amount > 0 %}
+    <p class="mt-3">Total to pay: <strong>₹{{ owes_amount|floatformat:2 }}</strong></p>
+    <p>{{ user.username }} → {{ receiver.username }}</p>
+
+    <form method="POST" class="mt-4">
+      {% csrf_token %}
+      <label>Choose Payment Method:</label><br>
+      <button name="payment_method" value="UPI" class="btn btn-primary mt-2">💳 UPI</button>
+      <button name="payment_method" value="Cash" class="btn btn-secondary mt-2">💵 Cash</button>
+    </form>
+  {% else %}
+    <p class="text-green-600 mt-3">✅ You have no pending payments. All settled!</p>
+  {% endif %}
+  <a href="{% url 'event_detail' event.id %}" class="btn btn-link mt-3">← Back to Event</a>
+</div>
+{% endblock %}

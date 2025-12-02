@@ -1,0 +1,200 @@
+{% extends 'accounts/base.html' %}
+
+{% block title %}Add Expense{% endblock %}
+
+{% block extra_head %}
+<style>
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: #f4f6f9;
+    padding: 0px;
+  }
+  .container {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 20px;
+    max-width: 500px;
+    margin: 40px auto; /* vertical spacing */
+    width: 90%; /* responsive on mobile */
+}
+
+  h2 { text-align: center; color: #333; }
+
+  label {
+    display: block;
+    margin-top: 10px;
+    font-weight: 600;
+    color: #333;
+  }
+
+  input, select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-top: 5px;
+  }
+
+  .split-buttons {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+  .split-btn {
+    flex: 1;
+    margin: 4px;
+    padding: 8px 10px;
+    background: #e0e0e0;
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  .split-btn.active {
+    background: #4CAF50;
+    color: white;
+    font-weight: bold;
+  }
+
+  .split-section {
+    display: none;
+    margin-top: 10px;
+  }
+
+  .split-section.active {
+    display: block;
+  }
+
+  button[type="submit"] {
+    margin-top: 20px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+  }
+
+  /* ✅ Bill upload styling */
+  .bill-upload {
+    margin-top: 15px;
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px dashed #bbb;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h2>Add Expense</h2>
+  
+  <!-- ✅ enctype added for file uploads -->
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    
+    <label>Description</label>
+    <input type="text" name="description" required>
+
+    <label>Amount (₹)</label>
+    <input type="number" name="amount" step="0.01" required>
+
+    <label>Paid by</label>
+    <select name="paid_by" required>
+      {% for member in members %}
+        <option value="{{ member.id }}">{{ member.username }}</option>
+      {% endfor %}
+    </select>
+
+    <label>Members Involved</label>
+    {% for member in members %}
+      <div>
+        <input type="checkbox" name="members" value="{{ member.id }}" id="member{{ member.id }}">
+        <label for="member{{ member.id }}">{{ member.username }}</label>
+      </div>
+    {% endfor %}
+
+    <label>Split Type</label>
+    <div class="split-buttons">
+      <button type="button" class="split-btn" data-type="equal">Equally</button>
+      <button type="button" class="split-btn" data-type="exact">Exact Amounts</button>
+      <button type="button" class="split-btn" data-type="shares">Shares</button>
+      <button type="button" class="split-btn" data-type="reimburse">Reimbursement</button>
+    </div>
+    <input type="hidden" name="split_type" id="splitType" value="equal">
+
+    <!-- Exact Amounts Section -->
+    <div id="exactSection" class="split-section">
+      <h4>Enter Exact Amounts (₹)</h4>
+      {% for member in members %}
+        <div>
+          {{ member.username }}:
+          <input type="number" step="0.01" name="exact_{{ member.id }}" placeholder="0.00">
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- Shares Section -->
+    <div id="shareSection" class="split-section">
+      <h4>Enter Shares</h4>
+      {% for member in members %}
+        <div>
+          {{ member.username }}:
+          <input type="number" step="1" name="share_{{ member.id }}" placeholder="1">
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- Reimbursement Section -->
+    <div id="reimburseSection" class="split-section">
+      <h4>Reimbursements (who paid whom)</h4>
+      <p><small>Use this if you’re recording someone paying back another.</small></p>
+    </div>
+
+    <!-- ✅ Bill upload field added -->
+    <div class="bill-upload">
+      <label for="bill_image">Attach Bill (optional):</label>
+      <input type="file" name="bill_image" accept="image/*">
+    </div>
+
+    <button type="submit">Add Expense</button>
+  </form>
+  <a href="{% url 'event_detail' event.id %}" style="text-decoration:none;">
+    ← Back to Event
+  </a>
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+  const buttons = document.querySelectorAll(".split-btn");
+  const splitTypeInput = document.getElementById("splitType");
+
+  const sections = {
+    exact: document.getElementById("exactSection"),
+    shares: document.getElementById("shareSection"),
+    reimburse: document.getElementById("reimburseSection"),
+  };
+
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      buttons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      splitTypeInput.value = btn.dataset.type;
+
+      Object.values(sections).forEach(sec => sec.classList.remove("active"));
+      if (sections[btn.dataset.type]) {
+        sections[btn.dataset.type].classList.add("active");
+      }
+    });
+  });
+</script>
+{% endblock %}

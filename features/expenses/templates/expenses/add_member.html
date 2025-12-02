@@ -1,0 +1,56 @@
+{% extends "accounts/base.html" %}
+{% load static %}
+{% block title %}Add Member{% endblock %}
+
+{% block content %}
+<section class="section">
+  <div class="container" style="max-width:550px;">
+
+    <h2 class="text-center mb-4" style="font-weight:700;">Add Member to 
+      <span style="color:var(--accent-color);">"{{ event.name }}"</span>
+    </h2>
+
+    <!-- Quick Add -->
+    <form method="POST" class="php-email-form mb-4">
+      {% csrf_token %}
+      <input type="hidden" name="action" value="quick_add">
+
+      <div class="mb-3">
+        <label class="form-label fw-bold">Member Name</label>
+        <input type="text" name="name" class="form-control" placeholder="Enter name" required>
+      </div>
+
+      <button class="btn btn-success w-100 rounded-pill">+ Add Member</button>
+    </form>
+
+    <div class="text-center my-3 fw-semibold" style="opacity:.6;">— OR —</div>
+
+    <!-- Invite Member -->
+    <form method="POST" class="php-email-form">
+      {% csrf_token %}
+      <input type="hidden" name="action" value="invite_add">
+
+      <div class="mb-3">
+        <label class="form-label fw-bold">Name</label>
+        <input type="text" name="name" class="form-control" placeholder="Enter name">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-bold">Email</label>
+        <input type="email" name="email" class="form-control" placeholder="Enter email">
+      </div>
+
+      <button class="btn w-100 invite-btn rounded-pill px-4 py-2 fw-semibold">📩 Invite Link</button>
+
+
+    </form>
+
+    <div class="text-center mt-4">
+      <a href="{% url 'event_detail' event.id %}" class="btn btn-outline-secondary rounded-pill px-4">
+        ← Back
+      </a>
+    </div>
+
+  </div>
+</section>
+{% endblock %}

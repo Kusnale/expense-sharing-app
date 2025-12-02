@@ -1,0 +1,127 @@
+{% extends 'accounts/base.html' %}
+
+{% block title %}Edit Event{% endblock %}
+
+{% block extra_head %}
+<style>
+  body {
+    font-family: "Poppins", sans-serif;
+    background: #f4f6f9;
+    margin: 0;
+    padding: 0;
+  }
+
+  .edit-card {
+    background: #ffffff;
+    padding: 30px 25px;
+    border-radius: 14px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    width: 400px;
+    margin: 100px auto 30px; /* space below header and above footer */
+    text-align: center;
+  }
+
+  .edit-card h2 {
+    margin-bottom: 20px;
+    color: #207A44; /* dark green */
+  }
+
+  input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+  }
+
+  button {
+    background: linear-gradient(135deg, #80C532, #28a745);
+    color: white;
+    border: none;
+    padding: 12px;
+    width: 100%;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 15px;
+    font-size: 15px;
+    font-weight: 600;
+    transition: 0.3s;
+  }
+
+  button:hover {
+    opacity: 0.9;
+  }
+
+  a.back-link {
+    display: inline-block;
+    margin-top: 12px;
+    color: #80C532;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  a.back-link:hover {
+    text-decoration: underline;
+  }
+
+  /* ✅ Messages styling */
+  .msg-container {
+    position: fixed;
+    top: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2000;
+    width: 90%;
+    max-width: 500px;
+  }
+
+  .alert {
+    padding: 10px 15px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    color: white;
+    text-align: center;
+    font-weight: 500;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+    animation: fadeInOut 3.5s ease-in-out;
+  }
+
+  .alert.success { background: #4CAF50; }
+  .alert.error, .alert.danger { background: #f44336; }
+  .alert.warning { background: #ff9800; }
+  .alert.info { background: #2196F3; }
+
+  @keyframes fadeInOut {
+    0% { opacity: 0; transform: translateY(-10px); }
+    10%, 90% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-10px); }
+  }
+
+  /* Mobile responsive */
+  @media(max-width:450px){
+    .edit-card { width: 90%; padding: 20px; }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="edit-card">
+  {% if messages %}
+  <div class="msg-container">
+    {% for message in messages %}
+      <div class="alert {{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <h2>Edit Event</h2>
+  <form method="POST">
+    {% csrf_token %}
+    <input type="text" name="name" value="{{ event.name }}" required>
+    <button type="submit">Update Event</button>
+  </form>
+
+  <a href="{% url 'dashboard' %}" class="back-link">← Back to Dashboard</a>
+</div>
+{% endblock %}

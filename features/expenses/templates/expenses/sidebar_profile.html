@@ -1,0 +1,99 @@
+{% block content %}                                                                                                 
+<div id="profileSidebar" class="profile-panel">
+
+    <div class="profile-header">
+        
+
+
+        <h4>{{ request.user.username }}</h4>
+        <p class="email">{{ request.user.email }}</p>
+    </div>
+
+    <div class="profile-body">
+
+    
+       <div class="upi-box">
+            <label>💳 UPI ID</label>
+            <div class="upi-edit" style="display:flex; align-items:center; gap:.5rem;">
+                <input id="upiInput" value="{{ request.user.profile.upi|default:'Not Set' }}" disabled style="min-width:150px;">
+                <button id="upiEditBtn" class="btn btn-link" title="Edit UPI" style="padding:0;">
+                    <i class="bi bi-pencil-square"></i>
+                </button>
+                <button id="upiSaveBtn" class="btn btn-link" title="Save UPI" style="padding:0; display:none;">
+                    <i class="bi bi-check-circle-fill text-success"></i>
+                </button>
+                <span id="upiStatus" style="font-size:12px; color:green; display:none; margin-left:.5rem;">Saved</span>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        <ul class="menu">
+            
+            <li><i class="bi bi-journal-text"></i> Notes</li>
+            <li><i class="bi bi-check2-square"></i> Todo</li>
+        </ul>
+
+        
+        <div class="action-buttons">
+            <a href="{% url 'logout' %}" class="logout-btn"><i class="bi bi-box-arrow-right"></i> Logout</a>
+            
+        </div>
+    </div>
+
+</div>
+
+<div id="overlay" class="overlay" onclick="closeProfile()"></div>
+
+{% endblock %}
+{% block scripts %}
+
+
+<script>
+const editBtn = document.getElementById('upiEditBtn');
+const saveBtn = document.getElementById('upiSaveBtn');
+const upiInput = document.getElementById('upiInput');
+const status = document.getElementById('upiStatus');
+
+editBtn.addEventListener('click', () => {
+    upiInput.disabled = false;
+    saveBtn.style.display = 'inline';
+    editBtn.style.display = 'none';
+});
+
+saveBtn.addEventListener('click', () => {
+    const upi = upiInput.value.trim();
+    if (!upi) return alert("UPI cannot be empty.");
+
+    fetch("{% url 'update_upi' %}", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': '{{ csrf_token }}'
+        },
+        body: JSON.stringify({upi})
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            status.style.display = 'inline';
+            upiInput.disabled = true;
+            saveBtn.style.display = 'none';
+            editBtn.style.display = 'inline';
+        } else {
+            alert(data.message);
+        }
+    })
+    .catch(err => alert("Error saving UPI."));
+});
+</script>
+
+
+
+{% endblock %}

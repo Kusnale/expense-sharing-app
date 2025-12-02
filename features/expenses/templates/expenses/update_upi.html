@@ -1,0 +1,22 @@
+{% extends 'accounts/base.html' %}
+{% block title %}Update UPI{% endblock %}
+
+{% block content %}
+<div style="max-width:400px;margin:40px auto;background:#fff;padding:20px;border-radius:10px;box-shadow:0 0 10px rgba(0,0,0,0.1);">
+  <h2 style="text-align:center;">Update UPI ID</h2>
+
+  <form method="POST">
+    {% csrf_token %}
+    <label for="upi_id" style="font-weight:600;">UPI ID:</label><br>
+    <input type="text" name="upi_id" id="upi_id"
+           value="{{ request.user.userprofile.upi_id|default:'' }}"
+           class="form-control"
+           placeholder="example@upi"
+           style="width:100%;padding:10px;margin-top:8px;border:1px solid #ccc;border-radius:6px;"><br><br>
+
+    <button type="submit" style="width:100%;background:#007bff;color:#fff;padding:10px;border:none;border-radius:6px;">
+      💾 Save
+    </button>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,317 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Expense Tracker{% endblock %}</title>
+
+  <!-- Groovin Template CSS -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
+
+  <!-- Your Custom CSS -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <!-- Bootstrap Icon -->
+  <style>
+    
+    /* Right Panel */
+    .profile-panel-wrap {
+      position: fixed; inset: 0; pointer-events: none; z-index: 1200;
+    }
+    .profile-panel-backdrop {
+      position: absolute; inset: 0; background: rgba(0,0,0,0.35);
+      opacity: 0; transition: opacity .22s ease; pointer-events: none;
+    }
+    .profile-panel {
+      position: absolute; right: 0; top: 0; bottom: 0;
+      width: 320px; max-width: 92%; background: #fff;
+      box-shadow: -2px 0 20px rgba(0,0,0,0.12); transform: translateX(100%);
+      transition: transform .28s cubic-bezier(.2,.9,.3,1); padding: 20px;
+      overflow-y: auto; pointer-events: auto;
+    }
+    .profile-panel-wrap.open { pointer-events: auto; }
+    .profile-panel-wrap.open .profile-panel-backdrop { opacity: 1; pointer-events: auto; }
+    .profile-panel-wrap.open .profile-panel { transform: translateX(0); }
+
+    /* Flash message styles stay same */
+    .msg-container {
+      position: fixed; top: 70px; left: 50%; transform: translateX(-50%);
+      z-index: 2000; width: 90%; max-width: 500px;
+    }
+    .alert { padding: 10px; border-radius: 6px; margin-bottom: 8px; color: white; text-align: center; font-weight: 500; }
+    .alert.success { background: #4CAF50; }
+    .alert.error, .alert.danger { background: #e63946; }
+    /* Horizontal Header Menu */
+    .navmenu ul {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navmenu ul li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .navmenu ul li a:hover {
+      color: #007bff;
+    }
+    #header a {
+      transition: color 0.3s ease;
+    }
+
+    #header a:hover {
+      color: #007bff;
+    }
+
+    @media (max-width: 600px) {
+      #header nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      #header ul {
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+    }
+    
+    /* Header Styling (3/4 taller, wide, flat) */
+    #header {
+      background: #fff;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      height: 90px; /* 3/4 size compared to earlier */
+      display: flex;
+      align-items: center;
+      padding: 0 40px;
+    }
+
+    /* Horizontal navigation */
+    #header nav {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    #header ul {
+      display: flex;
+      align-items: center;
+      gap: 28px; /* evenly spaced */
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    #header ul li a {
+      text-decoration: none;
+      font-size: 16px;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    #header ul li a:hover {
+      color: #007bff;
+    }
+
+    /* Remove space under header across all pages */
+    main,
+    .container,
+    .content {
+      margin-top: 0 !important;
+      padding-top: 0 !important;
+    }
+
+    /* Responsive nav */
+    @media (max-width: 600px) {
+      #header nav {
+        flex-direction: column;
+        height: auto;
+        padding: 12px;
+      }
+
+      #header ul {
+        flex-wrap: wrap;
+        gap: 12px;
+        justify-content: center;
+      }
+    }
+
+  
+
+  </style>
+
+  {% block extra_head %}{% endblock %}
+</head>
+
+<body>
+
+  <!-- Flash Messages -->
+  {% if messages %}
+    <div class="msg-container">
+      {% for message in messages %}
+        <div class="alert {{ message.tags }}">{{ message }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <!-- ======= Header ======= -->
+  <header id="header">
+    <nav>
+      <!-- Left Logo -->
+      <div style="font-size:24px; font-weight:700; color:#222;">
+        <a href="{% url 'dashboard' %}" style="text-decoration:none; color:inherit;">
+          Expense Share
+        </a>
+      </div>
+
+      <!-- Right Horizontal Menu -->
+      <ul>
+        <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+        <li><a href="{% url 'add_event' %}">+ Add Event</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="javascript:void(0)" onclick="openProfilePanel()">Profile</a></li>
+      </ul>
+    </nav>
+  </header>
+
+
+
+  <!-- ======= Profile Right Panel ======= -->
+  <div id="profilePanelWrap" class="profile-panel-wrap" aria-hidden="true">
+    <div id="profilePanelBackdrop" class="profile-panel-backdrop" tabindex="-1"></div>
+
+    <aside class="profile-panel" role="dialog" aria-label="Profile panel">
+      <!-- Profile Header -->
+      <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+        <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+            style="width:60px;height:60px;border-radius:50%;border:2px solid #e6f3ff;object-fit:cover;"
+            alt="Profile">
+        <div>
+          <p style="font-weight:600;font-size:16px;color:#222;">{{ request.user.username }}</p>
+          <p style="font-size:14px;color:#555;">{{ request.user.email }}</p>
+
+          <!-- 🏦 Editable UPI -->
+          <div id="upiDisplay" style="font-size:14px;color:#555;">
+            {{ request.user.profile.upi_id|default:"Not set" }}
+            <span onclick="showUpiEdit()" style="cursor:pointer;">✏️</span>
+          </div>
+
+          <form id="upiEditForm" method="post" action="{% url 'update_upi' %}" style="display:none;margin-top:4px;">
+            {% csrf_token %}
+            <input type="text" name="upi_id" placeholder="Enter new UPI ID"
+                  style="padding:4px 8px;border:1px solid #ccc;border-radius:6px;width:90%;font-size:14px;">
+            <div style="margin-top:4px;">
+              <button type="submit" class="btn btn-primary btn-sm">Save</button>
+              <button type="button" onclick="cancelUpiEdit()" class="btn btn-light btn-sm">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <hr>
+
+      <!-- Menu Options -->
+      <div style="display:flex;flex-direction:column;gap:10px;margin-top:20px;">
+        <a href="{% url 'todo_list' %}" style="text-decoration:none;color:#222;font-size:15px;">📝 To-Do List</a>
+        <a href="{% url 'notes' %}" style="text-decoration:none;color:#222;font-size:15px;">📒 Notes</a>
+        <a href="{% url 'dashboard' %}" style="text-decoration:none;color:#222;font-size:15px;">🏠 Dashboard</a>
+        <a href="{% url 'logout' %}" style="text-decoration:none;color:#e63946;font-size:15px;">🚪 Logout</a>
+      </div>
+
+      <button onclick="closeProfilePanel()" class="btn btn-light w-100 mt-3">
+        Close
+      </button>
+    </aside>
+  </div>
+
+  <!-- ======= Main Content ======= -->
+  <main id="main" class="main" style="padding-top: 0;">
+    {% block content %}{% endblock %}
+  </main>
+
+  
+  
+  <!-- Footer -->
+  <footer id="footer" style="background:#0b132b; color:white; padding:40px 20px; margin-top:60px;">
+    <div style="max-width:1000px; margin:0 auto; display:flex; flex-wrap:wrap; justify-content:space-between; gap:20px;">
+
+      <!-- About Section -->
+      <section id="about" style="flex:1 1 45%;">
+        <h3 style="border-bottom:1px solid #fff; padding-bottom:8px;">About Us</h3>
+        <p style="margin-top:10px;">
+          Expense Share is your go-to app for managing shared group expenses with ease and accuracy.
+          Whether it’s travel, rent, or events, we simplify who owes what and when.
+        </p>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact" style="flex:1 1 45%;">
+        <h3 style="border-bottom:1px solid #fff; padding-bottom:8px;">Contact Us</h3>
+        <p style="margin-top:10px;">Email: support@expenseshareapp.com</p>
+        <p>Phone: +1 234 567 8901</p>
+      </section>
+    </div>
+
+    <p style="text-align:center; margin-top:30px; font-size:14px;">
+      © {{ now|date:"Y" }} Expense Share | All Rights Reserved
+    </p>
+  </footer>
+
+
+  <!-- Boostrap & Vendor JS -->
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+  <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+  <!-- Profile panel JS -->
+  <script>
+    const wrap = document.getElementById('profilePanelWrap');
+    const backdrop = document.getElementById('profilePanelBackdrop');
+
+    function openProfilePanel() {
+      wrap.classList.add('open');
+    }
+    function closeProfilePanel() {
+      wrap.classList.remove('open');
+    }
+
+    backdrop?.addEventListener('click', closeProfilePanel);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeProfilePanel();
+    });
+
+    function showUpiEdit() {
+      document.getElementById('upiDisplay').style.display = 'none';
+      document.getElementById('upiEditForm').style.display = 'block';
+    }
+    function cancelUpiEdit() {
+      document.getElementById('upiDisplay').style.display = 'block';
+      document.getElementById('upiEditForm').style.display = 'none';
+    }
+  </script>
+
+  {% block scripts %}{% endblock %}
+</body>
+</html>

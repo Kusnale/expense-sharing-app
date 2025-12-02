@@ -1,0 +1,2452 @@
+[
+{
+  "model": "expenses.event",
+  "pk": 1,
+  "fields": {
+    "name": "Party",
+    "created_by": 1,
+    "created_at": "2025-11-13T06:23:19.640Z",
+    "members": [
+      1,
+      5,
+      6,
+      7,
+      8,
+      9,
+      14,
+      15,
+      16
+    ]
+  }
+},
+{
+  "model": "expenses.event",
+  "pk": 2,
+  "fields": {
+    "name": "Tour",
+    "created_by": 1,
+    "created_at": "2025-11-13T06:27:40.686Z",
+    "members": [
+      1,
+      6,
+      7,
+      9
+    ]
+  }
+},
+{
+  "model": "expenses.event",
+  "pk": 4,
+  "fields": {
+    "name": "Taxi",
+    "created_by": 1,
+    "created_at": "2025-11-13T06:29:35.609Z",
+    "members": [
+      1,
+      5,
+      8,
+      10
+    ]
+  }
+},
+{
+  "model": "expenses.event",
+  "pk": 5,
+  "fields": {
+    "name": "Temple Visit",
+    "created_by": 1,
+    "created_at": "2025-11-13T06:29:45.358Z",
+    "members": [
+      1,
+      6,
+      8,
+      9
+    ]
+  }
+},
+{
+  "model": "expenses.event",
+  "pk": 6,
+  "fields": {
+    "name": "Weekend ",
+    "created_by": 1,
+    "created_at": "2025-11-13T06:30:32.415Z",
+    "members": [
+      1,
+      8
+    ]
+  }
+},
+{
+  "model": "expenses.event",
+  "pk": 7,
+  "fields": {
+    "name": "Cafe",
+    "created_by": 1,
+    "created_at": "2025-11-13T06:30:39.062Z",
+    "members": [
+      1,
+      2,
+      6,
+      7,
+      11,
+      12
+    ]
+  }
+},
+{
+  "model": "expenses.event",
+  "pk": 8,
+  "fields": {
+    "name": "Chocolate",
+    "created_by": 13,
+    "created_at": "2025-11-13T07:36:42.057Z",
+    "members": [
+      6,
+      12,
+      13,
+      14
+    ]
+  }
+},
+{
+  "model": "expenses.event",
+  "pk": 9,
+  "fields": {
+    "name": "Netflix ",
+    "created_by": 16,
+    "created_at": "2025-11-17T02:54:25.301Z",
+    "members": [
+      1,
+      2,
+      16
+    ]
+  }
+},
+{
+  "model": "expenses.event",
+  "pk": 10,
+  "fields": {
+    "name": "Dessert",
+    "created_by": 16,
+    "created_at": "2025-11-17T02:55:39.555Z",
+    "members": [
+      1,
+      16
+    ]
+  }
+},
+{
+  "model": "expenses.expense",
+  "pk": 1,
+  "fields": {
+    "event": 1,
+    "description": "Food",
+    "amount": 3000.0,
+    "paid_by": 5,
+    "split_type": "equal",
+    "exact_amounts": {},
+    "created_at": "2025-11-13T06:27:01.145Z",
+    "bill_image": "bills/myimage.jpg",
+    "members_involved": [
+      1
+    ]
+  }
+},
+{
+  "model": "expenses.expense",
+  "pk": 2,
+  "fields": {
+    "event": 1,
+    "description": "Dessert",
+    "amount": 3000.0,
+    "paid_by": 6,
+    "split_type": "exact",
+    "exact_amounts": {
+      "1": 300.0,
+      "5": 300.0,
+      "6": 1000.0,
+      "7": 1000.0,
+      "8": 400.0
+    },
+    "created_at": "2025-11-13T06:27:20.987Z",
+    "bill_image": "",
+    "members_involved": [
+      1
+    ]
+  }
+},
+{
+  "model": "expenses.expense",
+  "pk": 3,
+  "fields": {
+    "event": 2,
+    "description": "Food",
+    "amount": 3000.0,
+    "paid_by": 1,
+    "split_type": "equal",
+    "exact_amounts": {},
+    "created_at": "2025-11-13T06:27:58.013Z",
+    "bill_image": "",
+    "members_involved": [
+      1
+    ]
+  }
+},
+{
+  "model": "expenses.expense",
+  "pk": 4,
+  "fields": {
+    "event": 2,
+    "description": "Stay",
+    "amount": 3000.0,
+    "paid_by": 1,
+    "split_type": "equal",
+    "exact_amounts": {},
+    "created_at": "2025-11-13T06:28:07.142Z",
+    "bill_image": "",
+    "members_involved": [
+      1
+    ]
+  }
+},
+{
+  "model": "expenses.expense",
+  "pk": 5,
+  "fields": {
+    "event": 2,
+    "description": "Miscellaneous",
+    "amount": 3000.0,
+    "paid_by": 1,
+    "split_type": "equal",
+    "exact_amounts": {},
+    "created_at": "2025-11-13T06:29:04.503Z",
+    "bill_image": "",
+    "members_involved": [
+      1
+    ]
+  }
+},
+{
+  "model": "expenses.expense",
+  "pk": 6,
+  "fields": {
+    "event": 5,
+    "description": "Travel",
+    "amount": 3000.0,
+    "paid_by": 1,
+    "split_type": "equal",
+    "exact_amounts": {},
+    "created_at": "2025-11-13T06:29:59.097Z",
+    "bill_image": "",
+    "members_involved": [
+      1
+    ]
+  }
+},
+{
+  "model": "expenses.expense",
+  "pk": 7,
+  "fields": {
+    "event": 5,
+    "description": "Miscellaneous",
+    "amount": 3000.0,
+    "paid_by": 8,
+    "split_type": "equal",
+    "exact_amounts": {},
+    "created_at": "2025-11-13T06:30:20.317Z",
+    "bill_image": "",
+    "members_involved": [
+      1
+    ]
+  }
+},
+{
+  "model": "expenses.expense",
+  "pk": 8,
+  "fields": {
+    "event": 6,
+    "description": "Movie",
+    "amount": 1300.0,
+    "paid_by": 1,
+    "split_type": "equal",
+    "exact_amounts": {},
+    "created_at": "2025-11-13T06:30:52.284Z",
+    "bill_image": "",
+    "members_involved": [
+      1
+    ]
+  }
+},
+{
+  "model": "expenses.expense",
+  "pk": 9,
+  "fields": {
+    "event": 6,
+    "description": "Icecream",
+    "amount": 300.0,
+    "paid_by": 8,
+    "split_type": "equal",
+    "exact_amounts": {},
+    "created_at": "2025-11-13T06:31:02.439Z",
+    "bill_image": "",
+    "members_involved": [
+      1
+    ]
+  }
+},
+{
+  "model": "expenses.expense",
+  "pk": 10,
+  "fields": {
+    "event": 4,
+    "description": "Evening Fare",
+    "amount": 3000.0,
+    "paid_by": 1,
+    "split_type": "equal",
+    "exact_amounts": {},
+    "created_at": "2025-11-13T06:31:29.506Z",
+    "bill_image": "",
+    "members_involved": [
+      1
+    ]
+  }
+},
+{
+  "model": "expenses.expense",
+  "pk": 11,
+  "fields": {
+    "event": 4,
+    "description": "Morning Fare",
+    "amount": 300.0,
+    "paid_by": 5,
+    "split_type": "equal",
+    "exact_amounts": {},
+    "created_at": "2025-11-13T06:31:48.831Z",
+    "bill_image": "",
+    "members_involved": [
+      1
+    ]
+  }
+},
+{
+  "model": "expenses.expense",
+  "pk": 12,
+  "fields": {
+    "event": 4,
+    "description": "Drop",
+    "amount": 500.0,
+    "paid_by": 1,
+    "split_type": "equal",
+    "exact_amounts": {},
+    "created_at": "2025-11-13T06:32:32.423Z",
+    "bill_image": "",
+    "members_involved": [
+      1
+    ]
+  }
+},
+{
+  "model": "expenses.expense",
+  "pk": 13,
+  "fields": {
+    "event": 7,
+    "description": "Polaroids",
+    "amount": 300.0,
+    "paid_by": 11,
+    "split_type": "equal",
+    "exact_amounts": {},
+    "created_at": "2025-11-13T06:32:48.317Z",
+    "bill_image": "",
+    "members_involved": [
+      1
+    ]
+  }
+},
+{
+  "model": "expenses.expense",
+  "pk": 14,
+  "fields": {
+    "event": 7,
+    "description": "Pizza",
+    "amount": 3000.0,
+    "paid_by": 1,
+    "split_type": "equal",
+    "exact_amounts": {},
+    "created_at": "2025-11-13T06:33:12.176Z",
+    "bill_image": "",
+    "members_involved": [
+      1
+    ]
+  }
+},
+{
+  "model": "expenses.expense",
+  "pk": 15,
+  "fields": {
+    "event": 7,
+    "description": "Drinks",
+    "amount": 1300.0,
+    "paid_by": 11,
+    "split_type": "equal",
+    "exact_amounts": {},
+    "created_at": "2025-11-13T06:33:34.193Z",
+    "bill_image": "",
+    "members_involved": [
+      1
+    ]
+  }
+},
+{
+  "model": "expenses.expense",
+  "pk": 16,
+  "fields": {
+    "event": 1,
+    "description": "Drinks",
+    "amount": 3000.0,
+    "paid_by": 8,
+    "split_type": "equal",
+    "exact_amounts": {},
+    "created_at": "2025-11-13T07:11:37.577Z",
+    "bill_image": "",
+    "members_involved": [
+      1,
+      5,
+      6,
+      7
+    ]
+  }
+},
+{
+  "model": "expenses.expense",
+  "pk": 17,
+  "fields": {
+    "event": 8,
+    "description": "Dark Choco",
+    "amount": 3000.0,
+    "paid_by": 6,
+    "split_type": "equal",
+    "exact_amounts": null,
+    "created_at": "2025-11-13T07:39:38.800Z",
+    "bill_image": "",
+    "members_involved": [
+      6,
+      12,
+      13,
+      14
+    ]
+  }
+},
+{
+  "model": "expenses.expense",
+  "pk": 18,
+  "fields": {
+    "event": 8,
+    "description": "Milk Choco",
+    "amount": 1300.0,
+    "paid_by": 14,
+    "split_type": "equal",
+    "exact_amounts": null,
+    "created_at": "2025-11-13T07:40:15.902Z",
+    "bill_image": "",
+    "members_involved": [
+      6,
+      12,
+      13,
+      14
+    ]
+  }
+},
+{
+  "model": "expenses.expense",
+  "pk": 19,
+  "fields": {
+    "event": 9,
+    "description": "Year",
+    "amount": 1000.0,
+    "paid_by": 1,
+    "split_type": "equal",
+    "exact_amounts": {},
+    "created_at": "2025-11-17T02:57:41.774Z",
+    "bill_image": "",
+    "members_involved": [
+      1,
+      16
+    ]
+  }
+},
+{
+  "model": "expenses.expense",
+  "pk": 20,
+  "fields": {
+    "event": 9,
+    "description": "Month",
+    "amount": 400.0,
+    "paid_by": 16,
+    "split_type": "equal",
+    "exact_amounts": {},
+    "created_at": "2025-11-17T02:58:04.607Z",
+    "bill_image": "",
+    "members_involved": [
+      1,
+      16
+    ]
+  }
+},
+{
+  "model": "expenses.expense",
+  "pk": 25,
+  "fields": {
+    "event": 10,
+    "description": "Slurry",
+    "amount": 300.0,
+    "paid_by": 16,
+    "split_type": "equal",
+    "exact_amounts": {},
+    "created_at": "2025-11-17T03:04:40.483Z",
+    "bill_image": "",
+    "members_involved": [
+      16
+    ]
+  }
+},
+{
+  "model": "expenses.expense",
+  "pk": 26,
+  "fields": {
+    "event": 10,
+    "description": "Softie",
+    "amount": 330.0,
+    "paid_by": 16,
+    "split_type": "equal",
+    "exact_amounts": {},
+    "created_at": "2025-11-17T03:11:46.986Z",
+    "bill_image": "",
+    "members_involved": [
+      16
+    ]
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 21,
+  "fields": {
+    "expense": 2,
+    "user": 1,
+    "member": 1,
+    "amount": 300.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 22,
+  "fields": {
+    "expense": 2,
+    "user": 1,
+    "member": 5,
+    "amount": 300.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 23,
+  "fields": {
+    "expense": 2,
+    "user": 1,
+    "member": 6,
+    "amount": 1000.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 24,
+  "fields": {
+    "expense": 2,
+    "user": 1,
+    "member": 7,
+    "amount": 1000.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 25,
+  "fields": {
+    "expense": 2,
+    "user": 1,
+    "member": 8,
+    "amount": 400.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 39,
+  "fields": {
+    "expense": 3,
+    "user": 1,
+    "member": 1,
+    "amount": 750.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 40,
+  "fields": {
+    "expense": 3,
+    "user": 1,
+    "member": 6,
+    "amount": 750.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 41,
+  "fields": {
+    "expense": 3,
+    "user": 1,
+    "member": 7,
+    "amount": 750.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 42,
+  "fields": {
+    "expense": 3,
+    "user": 1,
+    "member": 9,
+    "amount": 750.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 43,
+  "fields": {
+    "expense": 4,
+    "user": 1,
+    "member": 1,
+    "amount": 1000.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 44,
+  "fields": {
+    "expense": 4,
+    "user": 1,
+    "member": 6,
+    "amount": 1000.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 45,
+  "fields": {
+    "expense": 4,
+    "user": 1,
+    "member": 7,
+    "amount": 1000.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 46,
+  "fields": {
+    "expense": 5,
+    "user": 1,
+    "member": 1,
+    "amount": 1000.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 47,
+  "fields": {
+    "expense": 5,
+    "user": 1,
+    "member": 7,
+    "amount": 1000.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 48,
+  "fields": {
+    "expense": 5,
+    "user": 1,
+    "member": 9,
+    "amount": 1000.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 49,
+  "fields": {
+    "expense": 10,
+    "user": 1,
+    "member": 1,
+    "amount": 750.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 50,
+  "fields": {
+    "expense": 10,
+    "user": 1,
+    "member": 5,
+    "amount": 750.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 51,
+  "fields": {
+    "expense": 10,
+    "user": 1,
+    "member": 8,
+    "amount": 750.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 52,
+  "fields": {
+    "expense": 10,
+    "user": 1,
+    "member": 10,
+    "amount": 750.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 55,
+  "fields": {
+    "expense": 12,
+    "user": 1,
+    "member": 8,
+    "amount": 250.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 56,
+  "fields": {
+    "expense": 12,
+    "user": 1,
+    "member": 10,
+    "amount": 250.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 57,
+  "fields": {
+    "expense": 11,
+    "user": 1,
+    "member": 1,
+    "amount": 150.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 58,
+  "fields": {
+    "expense": 11,
+    "user": 1,
+    "member": 5,
+    "amount": 150.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 59,
+  "fields": {
+    "expense": 6,
+    "user": 1,
+    "member": 1,
+    "amount": 750.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 60,
+  "fields": {
+    "expense": 6,
+    "user": 1,
+    "member": 6,
+    "amount": 750.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 61,
+  "fields": {
+    "expense": 6,
+    "user": 1,
+    "member": 8,
+    "amount": 750.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 62,
+  "fields": {
+    "expense": 6,
+    "user": 1,
+    "member": 9,
+    "amount": 750.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 65,
+  "fields": {
+    "expense": 7,
+    "user": 1,
+    "member": 1,
+    "amount": 1500.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 66,
+  "fields": {
+    "expense": 7,
+    "user": 1,
+    "member": 8,
+    "amount": 1500.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 67,
+  "fields": {
+    "expense": 8,
+    "user": 1,
+    "member": 1,
+    "amount": 650.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 68,
+  "fields": {
+    "expense": 8,
+    "user": 1,
+    "member": 8,
+    "amount": 650.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 69,
+  "fields": {
+    "expense": 9,
+    "user": 1,
+    "member": 1,
+    "amount": 150.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 70,
+  "fields": {
+    "expense": 9,
+    "user": 1,
+    "member": 8,
+    "amount": 150.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 77,
+  "fields": {
+    "expense": 14,
+    "user": 1,
+    "member": 1,
+    "amount": 750.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 78,
+  "fields": {
+    "expense": 14,
+    "user": 1,
+    "member": 6,
+    "amount": 750.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 79,
+  "fields": {
+    "expense": 14,
+    "user": 1,
+    "member": 7,
+    "amount": 750.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 80,
+  "fields": {
+    "expense": 14,
+    "user": 1,
+    "member": 11,
+    "amount": 750.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 81,
+  "fields": {
+    "expense": 15,
+    "user": 1,
+    "member": 1,
+    "amount": 325.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 82,
+  "fields": {
+    "expense": 15,
+    "user": 1,
+    "member": 6,
+    "amount": 325.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 83,
+  "fields": {
+    "expense": 15,
+    "user": 1,
+    "member": 7,
+    "amount": 325.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 84,
+  "fields": {
+    "expense": 15,
+    "user": 1,
+    "member": 11,
+    "amount": 325.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 91,
+  "fields": {
+    "expense": 17,
+    "user": 13,
+    "member": 6,
+    "amount": 750.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 92,
+  "fields": {
+    "expense": 17,
+    "user": 13,
+    "member": 12,
+    "amount": 750.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 93,
+  "fields": {
+    "expense": 17,
+    "user": 13,
+    "member": 13,
+    "amount": 750.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 94,
+  "fields": {
+    "expense": 17,
+    "user": 13,
+    "member": 14,
+    "amount": 750.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 95,
+  "fields": {
+    "expense": 18,
+    "user": 13,
+    "member": 6,
+    "amount": 325.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 96,
+  "fields": {
+    "expense": 18,
+    "user": 13,
+    "member": 12,
+    "amount": 325.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 97,
+  "fields": {
+    "expense": 18,
+    "user": 13,
+    "member": 13,
+    "amount": 325.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 98,
+  "fields": {
+    "expense": 18,
+    "user": 13,
+    "member": 14,
+    "amount": 325.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 99,
+  "fields": {
+    "expense": 13,
+    "user": 1,
+    "member": 1,
+    "amount": 100.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 100,
+  "fields": {
+    "expense": 13,
+    "user": 1,
+    "member": 11,
+    "amount": 100.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 101,
+  "fields": {
+    "expense": 13,
+    "user": 1,
+    "member": 12,
+    "amount": 100.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 118,
+  "fields": {
+    "expense": 16,
+    "user": 1,
+    "member": 1,
+    "amount": 750.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 119,
+  "fields": {
+    "expense": 16,
+    "user": 1,
+    "member": 5,
+    "amount": 750.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 120,
+  "fields": {
+    "expense": 16,
+    "user": 1,
+    "member": 6,
+    "amount": 750.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 121,
+  "fields": {
+    "expense": 16,
+    "user": 1,
+    "member": 7,
+    "amount": 750.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 129,
+  "fields": {
+    "expense": 25,
+    "user": 16,
+    "member": 1,
+    "amount": 150.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 130,
+  "fields": {
+    "expense": 25,
+    "user": 16,
+    "member": 16,
+    "amount": 150.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 131,
+  "fields": {
+    "expense": 26,
+    "user": 16,
+    "member": 1,
+    "amount": 165.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 132,
+  "fields": {
+    "expense": 26,
+    "user": 16,
+    "member": 16,
+    "amount": 165.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 139,
+  "fields": {
+    "expense": 1,
+    "user": 1,
+    "member": 1,
+    "amount": 600.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 140,
+  "fields": {
+    "expense": 1,
+    "user": 1,
+    "member": 5,
+    "amount": 600.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 141,
+  "fields": {
+    "expense": 1,
+    "user": 1,
+    "member": 6,
+    "amount": 600.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 142,
+  "fields": {
+    "expense": 1,
+    "user": 1,
+    "member": 7,
+    "amount": 600.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 143,
+  "fields": {
+    "expense": 1,
+    "user": 1,
+    "member": 8,
+    "amount": 600.0
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 144,
+  "fields": {
+    "expense": 19,
+    "user": 16,
+    "member": 1,
+    "amount": 333.3333333333333
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 145,
+  "fields": {
+    "expense": 19,
+    "user": 16,
+    "member": 2,
+    "amount": 333.3333333333333
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 146,
+  "fields": {
+    "expense": 19,
+    "user": 16,
+    "member": 16,
+    "amount": 333.3333333333333
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 147,
+  "fields": {
+    "expense": 20,
+    "user": 16,
+    "member": 1,
+    "amount": 133.33333333333334
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 148,
+  "fields": {
+    "expense": 20,
+    "user": 16,
+    "member": 2,
+    "amount": 133.33333333333334
+  }
+},
+{
+  "model": "expenses.expenseshare",
+  "pk": 149,
+  "fields": {
+    "expense": 20,
+    "user": 16,
+    "member": 16,
+    "amount": 133.33333333333334
+  }
+},
+{
+  "model": "expenses.profile",
+  "pk": 1,
+  "fields": {
+    "user": 1,
+    "upi_id": "8147102941@ibl",
+    "invite_token": "ro2CMSYPoJtDGdvC1XP0YQ"
+  }
+},
+{
+  "model": "expenses.profile",
+  "pk": 2,
+  "fields": {
+    "user": 2,
+    "upi_id": "8147102942@ibl",
+    "invite_token": ""
+  }
+},
+{
+  "model": "expenses.profile",
+  "pk": 3,
+  "fields": {
+    "user": 3,
+    "upi_id": null,
+    "invite_token": null
+  }
+},
+{
+  "model": "expenses.profile",
+  "pk": 4,
+  "fields": {
+    "user": 4,
+    "upi_id": null,
+    "invite_token": null
+  }
+},
+{
+  "model": "expenses.profile",
+  "pk": 5,
+  "fields": {
+    "user": 5,
+    "upi_id": null,
+    "invite_token": null
+  }
+},
+{
+  "model": "expenses.profile",
+  "pk": 6,
+  "fields": {
+    "user": 6,
+    "upi_id": null,
+    "invite_token": null
+  }
+},
+{
+  "model": "expenses.profile",
+  "pk": 7,
+  "fields": {
+    "user": 7,
+    "upi_id": null,
+    "invite_token": null
+  }
+},
+{
+  "model": "expenses.profile",
+  "pk": 8,
+  "fields": {
+    "user": 8,
+    "upi_id": null,
+    "invite_token": null
+  }
+},
+{
+  "model": "expenses.profile",
+  "pk": 9,
+  "fields": {
+    "user": 9,
+    "upi_id": null,
+    "invite_token": null
+  }
+},
+{
+  "model": "expenses.profile",
+  "pk": 10,
+  "fields": {
+    "user": 10,
+    "upi_id": null,
+    "invite_token": null
+  }
+},
+{
+  "model": "expenses.profile",
+  "pk": 11,
+  "fields": {
+    "user": 11,
+    "upi_id": null,
+    "invite_token": null
+  }
+},
+{
+  "model": "expenses.profile",
+  "pk": 12,
+  "fields": {
+    "user": 12,
+    "upi_id": null,
+    "invite_token": null
+  }
+},
+{
+  "model": "expenses.profile",
+  "pk": 13,
+  "fields": {
+    "user": 13,
+    "upi_id": "9981818181@ibl",
+    "invite_token": null
+  }
+},
+{
+  "model": "expenses.profile",
+  "pk": 14,
+  "fields": {
+    "user": 14,
+    "upi_id": null,
+    "invite_token": null
+  }
+},
+{
+  "model": "expenses.profile",
+  "pk": 15,
+  "fields": {
+    "user": 15,
+    "upi_id": null,
+    "invite_token": null
+  }
+},
+{
+  "model": "expenses.profile",
+  "pk": 16,
+  "fields": {
+    "user": 16,
+    "upi_id": null,
+    "invite_token": "pFL2b643-jPScHAJWUHwlg"
+  }
+},
+{
+  "model": "expenses.todo",
+  "pk": 1,
+  "fields": {
+    "user": 1,
+    "title": "z",
+    "created_at": "2025-11-13T06:21:11.614Z"
+  }
+},
+{
+  "model": "expenses.todo",
+  "pk": 2,
+  "fields": {
+    "user": 1,
+    "title": "y",
+    "created_at": "2025-11-13T06:21:15.339Z"
+  }
+},
+{
+  "model": "expenses.todo",
+  "pk": 3,
+  "fields": {
+    "user": 1,
+    "title": "x",
+    "created_at": "2025-11-13T06:21:41.998Z"
+  }
+},
+{
+  "model": "expenses.note",
+  "pk": 1,
+  "fields": {
+    "user": 1,
+    "text": "i have purchased xyz for 3000",
+    "created_at": "2025-11-13T06:22:48.719Z"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 1,
+  "fields": {
+    "name": "Can add event",
+    "content_type": 1,
+    "codename": "add_event"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 2,
+  "fields": {
+    "name": "Can change event",
+    "content_type": 1,
+    "codename": "change_event"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 3,
+  "fields": {
+    "name": "Can delete event",
+    "content_type": 1,
+    "codename": "delete_event"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 4,
+  "fields": {
+    "name": "Can view event",
+    "content_type": 1,
+    "codename": "view_event"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 5,
+  "fields": {
+    "name": "Can add expense",
+    "content_type": 2,
+    "codename": "add_expense"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 6,
+  "fields": {
+    "name": "Can change expense",
+    "content_type": 2,
+    "codename": "change_expense"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 7,
+  "fields": {
+    "name": "Can delete expense",
+    "content_type": 2,
+    "codename": "delete_expense"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 8,
+  "fields": {
+    "name": "Can view expense",
+    "content_type": 2,
+    "codename": "view_expense"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 9,
+  "fields": {
+    "name": "Can add expense share",
+    "content_type": 3,
+    "codename": "add_expenseshare"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 10,
+  "fields": {
+    "name": "Can change expense share",
+    "content_type": 3,
+    "codename": "change_expenseshare"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 11,
+  "fields": {
+    "name": "Can delete expense share",
+    "content_type": 3,
+    "codename": "delete_expenseshare"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 12,
+  "fields": {
+    "name": "Can view expense share",
+    "content_type": 3,
+    "codename": "view_expenseshare"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 13,
+  "fields": {
+    "name": "Can add note",
+    "content_type": 4,
+    "codename": "add_note"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 14,
+  "fields": {
+    "name": "Can change note",
+    "content_type": 4,
+    "codename": "change_note"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 15,
+  "fields": {
+    "name": "Can delete note",
+    "content_type": 4,
+    "codename": "delete_note"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 16,
+  "fields": {
+    "name": "Can view note",
+    "content_type": 4,
+    "codename": "view_note"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 17,
+  "fields": {
+    "name": "Can add payment",
+    "content_type": 5,
+    "codename": "add_payment"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 18,
+  "fields": {
+    "name": "Can change payment",
+    "content_type": 5,
+    "codename": "change_payment"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 19,
+  "fields": {
+    "name": "Can delete payment",
+    "content_type": 5,
+    "codename": "delete_payment"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 20,
+  "fields": {
+    "name": "Can view payment",
+    "content_type": 5,
+    "codename": "view_payment"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 21,
+  "fields": {
+    "name": "Can add pending member",
+    "content_type": 6,
+    "codename": "add_pendingmember"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 22,
+  "fields": {
+    "name": "Can change pending member",
+    "content_type": 6,
+    "codename": "change_pendingmember"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 23,
+  "fields": {
+    "name": "Can delete pending member",
+    "content_type": 6,
+    "codename": "delete_pendingmember"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 24,
+  "fields": {
+    "name": "Can view pending member",
+    "content_type": 6,
+    "codename": "view_pendingmember"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 25,
+  "fields": {
+    "name": "Can add profile",
+    "content_type": 7,
+    "codename": "add_profile"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 26,
+  "fields": {
+    "name": "Can change profile",
+    "content_type": 7,
+    "codename": "change_profile"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 27,
+  "fields": {
+    "name": "Can delete profile",
+    "content_type": 7,
+    "codename": "delete_profile"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 28,
+  "fields": {
+    "name": "Can view profile",
+    "content_type": 7,
+    "codename": "view_profile"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 29,
+  "fields": {
+    "name": "Can add reminder",
+    "content_type": 8,
+    "codename": "add_reminder"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 30,
+  "fields": {
+    "name": "Can change reminder",
+    "content_type": 8,
+    "codename": "change_reminder"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 31,
+  "fields": {
+    "name": "Can delete reminder",
+    "content_type": 8,
+    "codename": "delete_reminder"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 32,
+  "fields": {
+    "name": "Can view reminder",
+    "content_type": 8,
+    "codename": "view_reminder"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 33,
+  "fields": {
+    "name": "Can add todo",
+    "content_type": 9,
+    "codename": "add_todo"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 34,
+  "fields": {
+    "name": "Can change todo",
+    "content_type": 9,
+    "codename": "change_todo"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 35,
+  "fields": {
+    "name": "Can delete todo",
+    "content_type": 9,
+    "codename": "delete_todo"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 36,
+  "fields": {
+    "name": "Can view todo",
+    "content_type": 9,
+    "codename": "view_todo"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 37,
+  "fields": {
+    "name": "Can add log entry",
+    "content_type": 10,
+    "codename": "add_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 38,
+  "fields": {
+    "name": "Can change log entry",
+    "content_type": 10,
+    "codename": "change_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 39,
+  "fields": {
+    "name": "Can delete log entry",
+    "content_type": 10,
+    "codename": "delete_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 40,
+  "fields": {
+    "name": "Can view log entry",
+    "content_type": 10,
+    "codename": "view_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 41,
+  "fields": {
+    "name": "Can add permission",
+    "content_type": 11,
+    "codename": "add_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 42,
+  "fields": {
+    "name": "Can change permission",
+    "content_type": 11,
+    "codename": "change_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 43,
+  "fields": {
+    "name": "Can delete permission",
+    "content_type": 11,
+    "codename": "delete_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 44,
+  "fields": {
+    "name": "Can view permission",
+    "content_type": 11,
+    "codename": "view_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 45,
+  "fields": {
+    "name": "Can add group",
+    "content_type": 12,
+    "codename": "add_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 46,
+  "fields": {
+    "name": "Can change group",
+    "content_type": 12,
+    "codename": "change_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 47,
+  "fields": {
+    "name": "Can delete group",
+    "content_type": 12,
+    "codename": "delete_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 48,
+  "fields": {
+    "name": "Can view group",
+    "content_type": 12,
+    "codename": "view_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 49,
+  "fields": {
+    "name": "Can add user",
+    "content_type": 13,
+    "codename": "add_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 50,
+  "fields": {
+    "name": "Can change user",
+    "content_type": 13,
+    "codename": "change_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 51,
+  "fields": {
+    "name": "Can delete user",
+    "content_type": 13,
+    "codename": "delete_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 52,
+  "fields": {
+    "name": "Can view user",
+    "content_type": 13,
+    "codename": "view_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 53,
+  "fields": {
+    "name": "Can add content type",
+    "content_type": 14,
+    "codename": "add_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 54,
+  "fields": {
+    "name": "Can change content type",
+    "content_type": 14,
+    "codename": "change_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 55,
+  "fields": {
+    "name": "Can delete content type",
+    "content_type": 14,
+    "codename": "delete_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 56,
+  "fields": {
+    "name": "Can view content type",
+    "content_type": 14,
+    "codename": "view_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 57,
+  "fields": {
+    "name": "Can add session",
+    "content_type": 15,
+    "codename": "add_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 58,
+  "fields": {
+    "name": "Can change session",
+    "content_type": 15,
+    "codename": "change_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 59,
+  "fields": {
+    "name": "Can delete session",
+    "content_type": 15,
+    "codename": "delete_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 60,
+  "fields": {
+    "name": "Can view session",
+    "content_type": 15,
+    "codename": "view_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 61,
+  "fields": {
+    "name": "Can add member",
+    "content_type": 16,
+    "codename": "add_member"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 62,
+  "fields": {
+    "name": "Can change member",
+    "content_type": 16,
+    "codename": "change_member"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 63,
+  "fields": {
+    "name": "Can delete member",
+    "content_type": 16,
+    "codename": "delete_member"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 64,
+  "fields": {
+    "name": "Can view member",
+    "content_type": 16,
+    "codename": "view_member"
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$7JBc3yQpNQADYAAJ7pbEbD$r6CHTOGx3kCprdDEfY0Z6lvAF8NGiT9nzl0Q66r4RjI=",
+    "last_login": "2025-11-17T02:36:02.200Z",
+    "is_superuser": false,
+    "username": "asus",
+    "first_name": "",
+    "last_name": "",
+    "email": "shrutiskusnale@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-11-13T06:20:21.832Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$DzwQQiciiZTS7GaFCTj18k$VHg7Ua8y+r2Gz1J3no2L8OZccWcrWdTOE0UepNqlLyE=",
+    "last_login": "2025-11-17T03:23:59.866Z",
+    "is_superuser": false,
+    "username": "Ethen",
+    "first_name": "",
+    "last_name": "",
+    "email": "shruti.wrk@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-11-13T06:47:50.785Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 3,
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "sd",
+    "first_name": "",
+    "last_name": "",
+    "email": "sd@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-11-13T06:55:07.274Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 4,
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "testuser123",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-11-13T07:00:58.356Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 5,
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "Max",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-11-13T07:08:20.932Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 6,
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "Shruti",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-11-13T07:09:04.218Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 7,
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "Saachi",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-11-13T07:09:10.469Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 8,
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "Avin",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-11-13T07:09:15.684Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 9,
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "Qwerty123",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-11-13T07:12:12.392Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 10,
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "Adi",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-11-13T07:13:46.653Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 11,
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "Anop",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-11-13T07:17:50.812Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 12,
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "Billy",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-11-13T07:20:40.404Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 13,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$GNytH0B8xCBqYGbSgmzdIb$orzDY2JL3hlcOj1tHmXJrD5jC7gSUfDvEXMoYQ4va8g=",
+    "last_login": "2025-11-13T07:36:27.837Z",
+    "is_superuser": false,
+    "username": "Emily",
+    "first_name": "",
+    "last_name": "",
+    "email": "shrutiskusnale@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-11-13T07:34:44.245Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 14,
+  "fields": {
+    "password": "!d1dfjpbIG1jqV4gAOTnMPYklYd5Y0OfRdplSmTfy",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "Qwerty1231",
+    "first_name": "",
+    "last_name": "",
+    "email": "shrutik0847@gmail.com",
+    "is_staff": false,
+    "is_active": false,
+    "date_joined": "2025-11-13T07:37:41.268Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 15,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$DtWNeXDlP2pjITEVtpemmP$flt7UWIfwr5R7X+1TU3vAfr8Ht46kLltVVyzM6j9hpE=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "Trevor",
+    "first_name": "",
+    "last_name": "",
+    "email": "2gi20cs151@students.git.edu",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-11-13T08:00:11.568Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 16,
+  "fields": {
+    "password": "",
+    "last_login": "2025-11-17T02:53:47.741Z",
+    "is_superuser": false,
+    "username": "kusnaleshr",
+    "first_name": "",
+    "last_name": "",
+    "email": "kusnaleshruti@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-11-16T09:05:10.964Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 1,
+  "fields": {
+    "app_label": "expenses",
+    "model": "event"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 2,
+  "fields": {
+    "app_label": "expenses",
+    "model": "expense"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 3,
+  "fields": {
+    "app_label": "expenses",
+    "model": "expenseshare"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 4,
+  "fields": {
+    "app_label": "expenses",
+    "model": "note"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 5,
+  "fields": {
+    "app_label": "expenses",
+    "model": "payment"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 6,
+  "fields": {
+    "app_label": "expenses",
+    "model": "pendingmember"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 7,
+  "fields": {
+    "app_label": "expenses",
+    "model": "profile"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 8,
+  "fields": {
+    "app_label": "expenses",
+    "model": "reminder"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 9,
+  "fields": {
+    "app_label": "expenses",
+    "model": "todo"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 10,
+  "fields": {
+    "app_label": "admin",
+    "model": "logentry"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 11,
+  "fields": {
+    "app_label": "auth",
+    "model": "permission"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 12,
+  "fields": {
+    "app_label": "auth",
+    "model": "group"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 13,
+  "fields": {
+    "app_label": "auth",
+    "model": "user"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 14,
+  "fields": {
+    "app_label": "contenttypes",
+    "model": "contenttype"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 15,
+  "fields": {
+    "app_label": "sessions",
+    "model": "session"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 16,
+  "fields": {
+    "app_label": "expenses",
+    "model": "member"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "4azvwdpc1zl9lifqtc7saj3fzzp8izqa",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2hDoQKBduvcMZGAGi5piSptojHfXJl3o9r_330sEXJcxrI3nUEgMQovD7xYxXXnaAF1wOleZ6rTMJcpNkTtt8lSJb8fd_QuM2MbvG4CJfG9ZWws-64yd8WS9AsXR5mwweeW1dZCMRnDRArpOs-t6AiSzRRu3VuoU-HEv81MM6v0BdSA-rQ:1vKwxV:5qTA-CQVcxuHcboPf3r8d6oagoaSGX_RmNRu3loyapQ",
+    "expire_date": "2025-12-01T10:59:45.992Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "74xc8etv1ok5wynv7szfa80fmi4191sp",
+  "fields": {
+    "session_data": "eyJwZW5kaW5nX2pvaW5fZXZlbnQiOjd9:1vJSCe:6fTuAAuBWMxZJbGjhJjRdOmYYjTVTNKuDl_c4XDzGBw",
+    "expire_date": "2025-11-27T07:57:12.101Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "8vl9k39law4rj9v575ixcr8wgxxzv0kt",
+  "fields": {
+    "session_data": ".eJxVjDsOgzAQRO-ydWTZCziYMj1nsNbrFZhEdsQnTZS7ByQamilm3psvvCXHlAc_lZS9fCSv0N1v4GlbR78tMvsUoQOESxeIn7u4D3GiPBTFJa9zCupA1Lkuqi9RXo-TvRyMtIy7rWs2QkjBuoAGiTW5hrnVDqOtta6QbWNcfWRAWxkbgxaOHJCJsIXfH9ZmQCM:1vKpuo:R1uuecw1HSYJtuAOdo4Y9v9TWB-zlpLnLHJMmtG0rfE",
+    "expire_date": "2025-12-01T03:28:30.705Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "i20oqnpjus8m1q0orm4p1q41dhytgdkj",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2hDoQKBduvcMZGAGi5piSptojHfXJl3o9r_330sEXJcxrI3nUEgMQovD7xYxXXnaAF1wOleZ6rTMJcpNkTtt8lSJb8fd_QuM2MbvG4CJfG9ZWws-64yd8WS9AsXR5mwweeW1dZCMRnDRArpOs-t6AiSzRRu3VuoU-HEv81MM6v0BdSA-rQ:1vKbtM:Jlu21BAoenB8kC5GVvA9n5jLGs3SzycbRDq_ag1v-QI",
+    "expire_date": "2025-11-30T12:30:04.976Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "i8qxwqakjkzg1hfs94nntcitu2yfwek0",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2hAoHQZcuvcMBGZAqoYmpV0Z765NutDtf-_9lwhxW2vYel7CxOIstBWn3zFFeuS2E77HdpslzW1dpiR3RR60y-vM-Xk53L-DGnv91gDGqEJFEYCzFpwm5AFAp1iKAjV6VJY0jkDGoWdjIqDKlAaP7DWI9wfhGDby:1vKwVv:YmuMivqU3okX12j1eNmfYw9tJfyjHQNELXGMljSAeH8",
+    "expire_date": "2025-12-01T10:31:15.121Z"
+  }
+}
+]

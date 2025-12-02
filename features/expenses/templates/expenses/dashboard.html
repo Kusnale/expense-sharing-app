@@ -1,0 +1,164 @@
+{% extends "accounts/base.html" %}
+{% load static %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block extra_head %}
+<style>
+
+/* ---------- PAGE LAYOUT ---------- */
+.dashboard-wrapper {
+  min-height: 70vh;
+  padding-top: 60px;
+}
+
+/* ---------- SECTION HEADER STYLE (Matches Groovin Portfolio Title) ---------- */
+.dashboard-title {
+  text-align: center;
+  font-family: var(--heading-font);
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 35px;
+  color: var(--heading-color);
+}
+
+/* ---------- EVENT CARD ---------- */
+.event-card {
+  background: var(--surface-color);
+  border-radius: 15px;
+  padding: 22px 25px;
+  margin: 14px auto;
+  width: 90%;
+  max-width: 750px;
+  box-shadow: 0px 5px 22px rgba(0,0,0,0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: 0.3s;
+  border-left: 4px solid var(--accent-color);
+}
+
+.event-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0px 10px 26px rgba(0,0,0,0.14);
+}
+
+/* Event name text */
+.event-name {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--heading-color);
+}
+
+/* ---------- BUTTONS ---------- */
+.btn-groovin {
+  padding: 10px 22px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* View button (Green Groovin Main Button) */
+.btn-view {
+  background: var(--accent-color);
+  color: var(--contrast-color);
+}
+
+.btn-view:hover {
+  background: #6ba728;
+}
+
+/* Leave button (Groovin Danger Style) */
+.btn-leave {
+  background: #da3b3b;
+  color: white;
+}
+
+.btn-leave:hover {
+  opacity: 0.85;
+}
+
+/* Add Event Button */
+.add-event-btn {
+  display: block;
+  background: var(--accent-color);
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 17px;
+  cursor: pointer;
+  transition: .3s;
+  margin: 40px auto;
+}
+
+.add-event-btn:hover {
+  transform: scale(1.05);
+}
+
+/* Empty text styling */
+.empty-text {
+  text-align: center;
+  font-size: 15px;
+  opacity: .7;
+  margin-top: 10px;
+}
+
+</style>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="dashboard-wrapper container" data-aos="fade-up">
+
+  
+
+  
+
+
+
+  <!-- -------- MY EVENTS -------- -->
+  <h2 class="dashboard-title" style="font-size:24px; margin-top:30px;">📌 Created by me</h2>
+
+  {% if my_event_data %}
+    {% for data in my_event_data %}
+      <div class="event-card">
+          <span class="event-name">{{ data.event.name }}</span>
+          <button class="btn-groovin btn-view" onclick="location.href='{% url 'event_detail' data.event.id %}'">View</button>
+      </div>
+    {% endfor %}
+  {% else %}
+    <p class="empty-text">No events created yet.</p>
+  {% endif %}
+
+ 
+
+  
+  <h2 class="dashboard-title" style="font-size:24px; margin-top:40px;">👥 Shared With Me</h2>
+
+  {% if group_event_data %}
+    {% for data in group_event_data %}
+      <div class="event-card">
+          <span class="event-name">{{ data.event.name }}</span>
+
+          <div>
+            <button class="btn-groovin btn-view" onclick="location.href='{% url 'event_detail' data.event.id %}'">View</button>
+
+           
+          </div>
+      </div>
+    {% endfor %}
+  {% else %}
+    <p class="empty-text">You haven't joined any shared events yet.</p>
+  {% endif %}
+
+
+
+</div>
+
+{% endblock %}

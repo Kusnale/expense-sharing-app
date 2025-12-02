@@ -1,0 +1,14 @@
+{% extends 'accounts/base.html' %}
+
+{% block title %}UPI Payment Successful{% endblock %}
+
+{% block content %}
+<div class="container" style="margin-top:50px; text-align:center;">
+    <div style="padding: 30px; max-width: 500px; margin: auto; background:#fff; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+        <h2 style="color: #4CAF50;">🎉 Payment Successful!</h2>
+        <p>₹{{ amount }} paid to <strong>{{ receiver }}</strong> successfully via UPI.</p>
+        <br>
+        <a href="{% url 'dashboard' %}" class="submit-button" style="background:#80C532;color:white;padding:10px 20px;border-radius:8px;text-decoration:none;">Go Back to Dashboard</a>
+    </div>
+</div>
+{% endblock %}
